@@ -31,7 +31,7 @@ class tb_bloodpresure(db.Model):
 	pluse = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, SBP, DBP, MBP, pluse, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -74,7 +74,7 @@ class tb_bloodsugar(db.Model):
 	fastingBloodGlucose = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, fastingBloodGlucose, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -170,7 +170,7 @@ class tb_bodycompositiondata(db.Model):
 	totalEnergyConsumption = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, 
 				abdominalBodyFatmassAdjust, trunkSoftleanmassFlag, visceralFatArea, visceralFatmass, weight, weightAdjust, weightHighLimit,
 				weightlowlimit, whr, abdominalBodyFatmassHighLimit, abdominalBodyFatmassLowLimit, adbominalSoftleanmass, basicMetabolicrate,
@@ -287,7 +287,7 @@ class tb_bonedensitydata(db.Model):
 	opr = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, acousticveLocity, tValue, zValue, thScale, 
 				toScale, zYear, riskLeavel, oi, youngAdult, ageMatched, bua, opr, conclusion):
 		self.familyCode = familyCode
@@ -340,7 +340,7 @@ class tb_bwhdata(db.Model):
 	waist = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, hip, bust, waist, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -389,7 +389,7 @@ class tb_ecgdata(db.Model):
 	S_V1 = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, HR, PR, P_Duration, T_Duration, QT_Duration, QTc_Duration, P_Axis, R_V5, S_V1, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -438,45 +438,46 @@ class tb_heighweightdata(db.Model):
 	bmi = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, data):
-		self.familyCode = data['familyCode']
-		self.familyName = data['familyName']
-		self.orgCode = data['orgCode']
-		self.orgName = data['orgName']
-		self.dataSource = data['dataSource']
-		self.mechineID = data['mechineID']
-		self.examDate = data['examDate']
-		self.IDCARD = 'IDCARD'
-		self.residentEMPI = data['residentEMPI']
-		self.residentName = 'residentName'
+	# def __init__(self, data):
+	# 	self.familyCode = data['familyCode']
+	# 	self.familyName = data['familyName']
+	# 	self.orgCode = data['orgCode']
+	# 	self.orgName = data['orgName']
+	# 	self.dataSource = data['dataSource']
+	# 	self.mechineID = data['mechineID']
+	# 	self.examDate = data['examDate']
+	# 	self.IDCARD = 'IDCARD'
+	# 	self.residentEMPI = data['residentEMPI']
+	# 	self.residentName = 'residentName'
+	# 	self.examDoctorEMPI = 'examDoctorEMPI'
+	# 	self.examDoctorName = 'examDoctorName'
+	# 	self.auditDoctorEMPI = 'auditDoctorEMPI'
+	# 	self.auditDoctorName = 'auditDoctorName'
+	# 	self.heigh = 123
+	# 	self.weight = 123
+	# 	self.bmi = 123
+	# 	self.conclusion = 'conclusion'
+
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, 
+		IDCARD, residentEMPI, residentName, auditDoctor, auditDoctorName, heigh, weight, bmi, conclusion):
+		self.familyCode = familyCode
+		self.familyName = familyName
+		self.orgCode = orgCode
+		self.orgName = orgName
+		self.dataSource = dataSource
+		self.mechineID = mechineID
+		self.examDate = examDate
+		self.IDCARD = IDCARD
+		self.residentEMPI = residentEMPI
+		self.residentName = residentName
 		self.examDoctorEMPI = 'examDoctorEMPI'
 		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = 'auditDoctorEMPI'
 		self.auditDoctorName = 'auditDoctorName'
-		self.heigh = 123
-		self.weight = 123
-		self.bmi = 123
-		self.conclusion = 'conclusion'
-
-	# def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName, auditDoctor, auditDoctorName, heigh, weight, bmi, conclusion):
-	# 	self.familyCode = familyCode
-	# 	self.familyName = familyName
-	# 	self.orgCode = orgCode
-	# 	self.orgName = orgName
-	# 	self.dataSource = dataSource
-	# 	self.mechineID = mechineID
-	# 	self.examDate = examDate
-	# 	self.IDCARD = IDCARD
-	# 	self.residentEMPI = residentEMPI
-	# 	self.residentName = residentName
-	# 	self.examDoctorEMPI = examDoctorEMPI
-	# 	self.examDoctorName = examDoctorName
-	# 	self.auditDoctorEMPI = auditDoctorEMPI
-	# 	self.auditDoctorName = auditDoctorName
-	# 	self.heigh = heigh
-	# 	self.weight = weight
-	# 	self.bmi = bmi
-	# 	self.conclusion = conclusion
+		self.heigh = heigh
+		self.weight = weight
+		self.bmi = bmi
+		self.conclusion = conclusion
 
 class tb_electronicvisiondata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -499,7 +500,7 @@ class tb_electronicvisiondata(db.Model):
 	rightEye = db.Column(db.String(128))
 	conclusion = db.Column(db.String(255))
 
-	def ___init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, checkType, leftEye, rightEye, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -564,13 +565,13 @@ def uploadHeighWeight():
 	elif request.method == 'POST':
 		data = request.get_json()
 		realdata = data['data']
-		#for item in realdata:
-			# heighweightdata = tb_heighweightdata(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
-			# 	data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
-			# 	item['residentName'], 'as', 'asd', item['heigh'], item['weight'], item['bmi'], item['conclusion'])
-		heighweightdata = tb_heighweightdata()
-		db.session.add(heighweightdata)
-		db.session.commit()
+		for item in realdata:
+			heighweightdata = tb_heighweightdata(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
+				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
+				item['residentName'], 'as', 'asd', item['heigh'], item['weight'], item['bmi'], item['conclusion'])
+		#heighweightdata = tb_heighweightdata()
+			db.session.add(heighweightdata)
+			db.session.commit()
 		return json.dumps(data)
 
 @app.route('/dataplatform/api/uploadResident', methods=['GET', 'POST'])
