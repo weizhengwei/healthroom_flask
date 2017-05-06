@@ -1,0 +1,25 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "HR": 180,
+            "PR": 55,
+            "P_Duration": 23,
+            "T_Duration": 23,
+            "QT_Duration": 23,
+            "QTc_Duration": 23,
+            "P_Axis": 23,
+            "R_V5": 23,
+            "S_V1": 23,
+            "conclusion": "aaabbbcccdddeeefff"
+        }
+    ]
+}

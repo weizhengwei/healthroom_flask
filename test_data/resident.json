@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "dataStatus": 1,
+            "EMPI": "123456789",
+            "name": "Tim Cook",
+            "gender": 1,
+            "birthday": "1988-10-10",
+            "cardNo": "111222333",
+            "company": "ZTEICT",
+            "phone":"13412344321",
+            "contactsName":"Jobs",
+            "contactsPhone":"13412344321",
+            "residenceType":"1",
+            "nation":"Han",
+            "bloodType":2,
+            "RH":1,
+            "education":2,
+            "occupation":"Programer",
+            "maritalStatus":1,
+            "address":"gaoxinnan6",
+            "mail":"admin@163.com",
+            "password":"123456"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "hip": 180,
+            "bust": 55,
+            "waist": 23,
+            "conclusion": "aaabbbcccdddeeefff"
+        }
+    ]
+}

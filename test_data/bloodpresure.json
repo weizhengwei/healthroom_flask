@@ -1,0 +1,20 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "SBP": 180,
+            "DBP": 55,
+            "MBP": 23,
+            "pulse":80,
+            "conclusion": "aaabbbcccdddeeefff"
+        }
+    ]
+}

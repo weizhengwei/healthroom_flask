@@ -1,0 +1,17 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "fastingBloodGlucose": 180,
+            "conclusion": "aaabbbcccdddeeefff"
+        }
+    ]
+}

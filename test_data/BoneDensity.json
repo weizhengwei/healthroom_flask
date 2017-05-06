@@ -1,0 +1,28 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "acousticveLocity": "aaa",
+            "tValue": "aaa",
+            "zValue": "aaa",
+            "thScale": "aaa",
+            "toScale": "aaa",
+            "zYear": "aaa",
+            "riskLeavel": "aaa",
+            "oi": "aaa",
+            "youngAdult": "aaa",
+            "ageMatched": "aaa",
+            "bua": "aaa",
+            "opr": "aaa",
+            "conclusion": "aaa"
+        }
+    ]
+}
