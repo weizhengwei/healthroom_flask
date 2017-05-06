@@ -521,9 +521,15 @@ class tb_electronicvisiondata(db.Model):
 		self.rightEye = rightEye
 		self.conclusion = conclusion
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-	return 'index page'
+	if request.method == 'GET':
+		return 'index page'
+	elif request.method == 'POST':
+		data = request.get_json(force = True, silent = True)
+		if data == None:
+			return 'please post json data'
+		return json.dumps(data)
 
 @app.route('/data/<id>')
 def get_data(id):
