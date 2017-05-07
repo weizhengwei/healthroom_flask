@@ -1,0 +1,4 @@
+/nenv/
+*.pyc
+*.py~
+*.gitignore~
