@@ -1,0 +1,42 @@
+{
+    "familyCode": "familyCode",
+    "familyName": "familyName",
+    "orgCode": "orgCode",
+    "orgName": "orgName",
+    "dataSource": "0",
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "residentEMPI": "residentEMPI",
+            "residentName": "residentName",
+            "FVC": "10",
+            "FEV1": "20",
+            "FEV2": "30",
+			"FEV1Percent": "30",
+			"FEV2Percent": "30",
+			"FEV3Percent": "30",
+			"MMF": "30",
+			"MVV1": "30",
+			"BSA1": "30",
+			"M_B1": "30",
+			"PEF": "30",
+			"V75": "30",
+			"V50": "30",
+			"V25": "30",
+			"V50_V25": "30",
+			"V25_H": "30",
+			"MVV": "30",
+			"MVV_BSA": "30",
+			"VC": "30",
+			"TV": "30",
+			"IRV": "30",
+			"ERV": "30",
+			"IC": "30",
+			"MV": "30",
+			"RR": "30",
+			"Result": "30",
+            "conclusion": "aaabbbcccdddeeefff"
+        }
+    ]
+}
