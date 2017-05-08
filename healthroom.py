@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from model import *
 import json
 
 app = Flask(__name__)
@@ -36,7 +37,7 @@ def uploadBloodPresure():
 		for item in realdata:
 			bloodpresuredata = tb_bloodpresure(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
 				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
-				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], item['SBP'], item['DBP'], item['MBP'], item['pluse'], item['conclusion'])
+				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], item['SBP'], item['DBP'], item['MBP'], item['pulse'], item['conclusion'])
 			db.session.add(bloodpresuredata)
 			db.session.commit()
 		return 'upload data ok'

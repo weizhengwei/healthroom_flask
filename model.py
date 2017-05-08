@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 from healthroom import db
-import datetime
+from datetime import datetime
 
 
 class tb_resident(db.Model):
@@ -17,7 +18,7 @@ class tb_resident(db.Model):
 	residentName = db.Column(db.String(255))
 	examDoctorEMPI = db.Column(db.String(255))
 	examDoctorName = db.Column(db.String(255))
-	updateTime = db.Column(db.DateTime, default=datetime.now)
+	updateTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctor, auditDoctorName, SBP, DBP, MBP, pluse, conclusion):
@@ -25,21 +26,21 @@ class tb_resident(db.Model):
 		self.familyName = familyName
 		self.orgCode = orgCode
 		self.orgName = orgName
-		self.dataSource = dataSource
-		self.mechineID = mechineID
-		self.examDate = examDate
-		self.IDCARD = IDCARD
-		self.residentEMPI = residentEMPI
-		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
-		self.auditDoctorEMPI = auditDoctorEMPI
-		self.auditDoctorName = auditDoctorName
-		self.SBP = SBP
-		self.DBP = DBP
-		self.MBP = MBP
-		self.pluse = pluse
-		self.conclusion = conclusion
+		# self.dataSource = dataSource
+		# self.mechineID = mechineID
+		# self.examDate = examDate
+		# self.IDCARD = IDCARD
+		# self.residentEMPI = residentEMPI
+		# self.residentName = residentName
+		# self.examDoctorEMPI = examDoctorEMPI
+		# self.examDoctorName = examDoctorName
+		# self.auditDoctorEMPI = auditDoctorEMPI
+		# self.auditDoctorName = auditDoctorName
+		# self.SBP = SBP
+		# self.DBP = DBP
+		# self.MBP = MBP
+		# self.pluse = pluse
+		# self.conclusion = conclusion
 
 
 class tb_bloodpresure(db.Model):
@@ -61,11 +62,11 @@ class tb_bloodpresure(db.Model):
 	SBP = db.Column(db.Float)
 	DBP = db.Column(db.Float)
 	MBP = db.Column(db.Float)
-	pluse = db.Column(db.Integer)
+	pulse = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, SBP, DBP, MBP, pluse, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, SBP, DBP, MBP, pulse, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -76,14 +77,14 @@ class tb_bloodpresure(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.SBP = SBP
 		self.DBP = DBP
 		self.MBP = MBP
-		self.pluse = pluse
+		self.pulse = pulse
 		self.conclusion = conclusion
 
 
@@ -107,8 +108,8 @@ class tb_bloodsugar(db.Model):
 	fastingBloodGlucose = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, fastingBloodGlucose, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, fastingBloodGlucose, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -203,8 +204,8 @@ class tb_bodycomposition(db.Model):
 	totalEnergyConsumption = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, 
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, 
 				abdominalBodyFatmassAdjust, trunkSoftleanmassFlag, visceralFatArea, visceralFatmass, weight, weightAdjust, weightHighLimit,
 				weightlowlimit, whr, abdominalBodyFatmassHighLimit, abdominalBodyFatmassLowLimit, adbominalSoftleanmass, basicMetabolicrate,
 				bmi, bmiHighLimit, bmiLowLimit, bodyAge, bodyFatRate, bodyFatHeighLimit, bodyFatLowLimit, bodyType, extracellularFluid, 
@@ -320,8 +321,8 @@ class tb_bonedensity(db.Model):
 	opr = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, acousticveLocity, tValue, zValue, thScale, 
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, acousticveLocity, tValue, zValue, thScale, 
 				toScale, zYear, riskLeavel, oi, youngAdult, ageMatched, bua, opr, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -373,8 +374,8 @@ class tb_bwh(db.Model):
 	waist = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, hip, bust, waist, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, hip, bust, waist, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -422,8 +423,8 @@ class tb_ecg(db.Model):
 	S_V1 = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, HR, PR, P_Duration, T_Duration, QT_Duration, QTc_Duration, P_Axis, R_V5, S_V1, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, HR, PR, P_Duration, T_Duration, QT_Duration, QTc_Duration, P_Axis, R_V5, S_V1, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -492,7 +493,7 @@ class tb_heighweight(db.Model):
 	# 	self.conclusion = 'conclusion'
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, 
-		IDCARD, residentEMPI, residentName, auditDoctor, auditDoctorName, heigh, weight, bmi, conclusion):
+		IDCARD, residentEMPI, residentName, auditDoctorEMPI, auditDoctorName, heigh, weight, bmi, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -533,8 +534,8 @@ class tb_electronicvision(db.Model):
 	rightEye = db.Column(db.String(128))
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, checkType, leftEye, rightEye, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, checkType, leftEye, rightEye, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
@@ -600,8 +601,8 @@ class tb_lung(db.Model):
 	Result = db.Column(db.String(255))
 	conclusion = db.Column(db.String(255))
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, FVC, FEV1, FEV2, FEV1Percent, FEV2Percent, FEV3Percent, MMF,
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctorEMPI, auditDoctorName, FVC, FEV1, FEV2, FEV1Percent, FEV2Percent, FEV3Percent, MMF,
 				MVV1, BSA1, M_B1, PEF, V75, V50, V25, V50_V25, V25_H, MVV, MVV_BSA, VC, TV, IRV, ERV, IC,
 				MV, RR, Result, conclusion):
 		self.familyCode = familyCode
