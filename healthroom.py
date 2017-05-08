@@ -67,11 +67,11 @@ def uploadBodyComposion():
 		data = request.get_json()
 		realdata = data.get('data')
 		for item in realdata:
-			bwhdata = tb_bwh(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
+			bodycompositiondata = tb_bodycomposition(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('abdominalBodyFatmass'), item.get('abdominalBodyFatmassAdjust'),item.get('trunkSoftleanmassFlag'),
-				item.get('visceralFatArea'), item.get('visceralFatmass'),item.get('weightAdjust'), item.get('weightHighLimit'),
+				item.get('visceralFatArea'), item.get('visceralFatmass'), item.get('weight'), item.get('weightAdjust'), item.get('weightHighLimit'),
 				item.get('weightlowlimit'), item.get('whr'),item.get('abdominalBodyFatmassHighLimit'), item.get('abdominalBodyFatmassLowLimit'),
 				item.get('adbominalSoftleanmass'), item.get('basicMetabolicrate'),item.get('bmi'), item.get('bmiHighLimit'),
 				item.get('bmiLowLimit'), item.get('bodyAge'),item.get('bodyFatRate'), item.get('bodyFatHeighLimit'),
@@ -85,7 +85,7 @@ def uploadBodyComposion():
 				item.get('softleanmass'), item.get('softleanmassAdjust'),item.get('softleanmassHighLimit'), item.get('softleanmassLowLimit'),
 				item.get('standardWeight'), item.get('subcutaneousFatmass'),item.get('totalBodyWater'), item.get('totalBodyWaterHighLimit'),				
 				item.get('totalBodyWaterLowLimit'), item.get('totalEnergyConsumption'),item.get('conclusion'))
-			db.session.add(bwhdata)
+			db.session.add(bodycompositiondata)
 			db.session.commit()
 		return 'upload data ok'
 
@@ -147,11 +147,11 @@ def uploadElectronicVision():
 		data = request.get_json()
 		realdata = data.get('data')
 		for item in realdata:
-			ecgdata = tb_ecg(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
+			electronicvisiondata = tb_electronicvision(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('checkType'),
 				item.get('leftEye'), item.get('rightEye'), item.get('conclusion'))
-			db.session.add(ecgdata)
+			db.session.add(electronicvisiondata)
 			db.session.commit()
 		return 'upload data ok'
 
@@ -163,13 +163,13 @@ def uploadHeighWeight():
 		data = request.get_json()
 		realdata = data.get('data')
 		for item in realdata:
-			heighweightdata = tb_heighweightdata(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
+			heighweightdata = tb_heighweight(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), 'as', 'asd', item.get('heigh'), item.get('weight'), item.get('bmi'), item.get('conclusion'))
 		#heighweightdata = tb_heighweightdata()
 			db.session.add(heighweightdata)
 			db.session.commit()
-		return json.dumps(data)
+		return 'upload data ok'#json.dumps(data)
 
 @app.route(url_prifix+'/uploadLung', methods=['GET', 'POST'])
 def uploadLung():
@@ -190,7 +190,6 @@ def uploadLung():
 				item.get('MVV'), item.get('MVV_BSA'), item.get('VC'), item.get('TV'), 
 				item.get('IRV'), item.get('ERV'), item.get('IC'), item.get('MV'), item.get('RR'), 
 				item.get('Result'),	item.get('conclusion'))
-			item.get('')
 			db.session.add(lungdata)
 			db.session.commit()
 		return 'upload data ok'

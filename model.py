@@ -120,8 +120,8 @@ class tb_bloodsugar(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.fastingBloodGlucose = fastingBloodGlucose
@@ -205,7 +205,7 @@ class tb_bodycomposition(db.Model):
 	conclusion = db.Column(db.String(255))
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctorEMPI, auditDoctorName, 
+				auditDoctorEMPI, auditDoctorName, abdominalBodyFatmass,
 				abdominalBodyFatmassAdjust, trunkSoftleanmassFlag, visceralFatArea, visceralFatmass, weight, weightAdjust, weightHighLimit,
 				weightlowlimit, whr, abdominalBodyFatmassHighLimit, abdominalBodyFatmassLowLimit, adbominalSoftleanmass, basicMetabolicrate,
 				bmi, bmiHighLimit, bmiLowLimit, bodyAge, bodyFatRate, bodyFatHeighLimit, bodyFatLowLimit, bodyType, extracellularFluid, 
@@ -229,9 +229,10 @@ class tb_bodycomposition(db.Model):
 		self.residentName = residentName
 		self.examDoctorEMPI = examDoctorEMPI
 		self.examDoctorName = examDoctorName
-		self.auditDoctorEMPI = auditDoctorEMPI
-		self.auditDoctorName = auditDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 
+		self.abdominalBodyFatmass = abdominalBodyFatmass
 		self.abdominalBodyFatmassAdjust = abdominalBodyFatmassAdjust
 		self.trunkSoftleanmassFlag = trunkSoftleanmassFlag
 		self.visceralFatArea = visceralFatArea
@@ -334,8 +335,8 @@ class tb_bonedensity(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.acousticveLocity = acousticveLocity
@@ -386,8 +387,8 @@ class tb_bwh(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.hip = hip
@@ -435,8 +436,8 @@ class tb_ecg(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.HR = HR
@@ -546,8 +547,8 @@ class tb_electronicvision(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.checkType = checkType
@@ -615,8 +616,8 @@ class tb_lung(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
+		self.examDoctorEMPI = 'examDoctorEMPI'
+		self.examDoctorName = 'examDoctorName'
 		self.auditDoctorEMPI = auditDoctorEMPI
 		self.auditDoctorName = auditDoctorName
 		self.FVC = FVC
