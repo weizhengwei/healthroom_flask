@@ -1,4 +1,46 @@
 from healthroom import db
+import datetime
+
+
+class tb_resident(db.Model):
+	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	familyCode = db.Column(db.String(255))
+	familyName = db.Column(db.String(255))
+	orgCode = db.Column(db.String(255))
+	orgName = db.Column(db.String(255))
+	dataSource = db.Column(db.Integer)
+	cardNo = db.Column(db.String(255))
+	gender = db.Column(db.Integer)
+	birthday = db.Column(db.Date)
+	phone = db.Column(db.String(255))
+	residentEMPI = db.Column(db.String(255))
+	residentName = db.Column(db.String(255))
+	examDoctorEMPI = db.Column(db.String(255))
+	examDoctorName = db.Column(db.String(255))
+	updateTime = db.Column(db.DateTime, default=datetime.now)
+
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
+				auditDoctor, auditDoctorName, SBP, DBP, MBP, pluse, conclusion):
+		self.familyCode = familyCode
+		self.familyName = familyName
+		self.orgCode = orgCode
+		self.orgName = orgName
+		self.dataSource = dataSource
+		self.mechineID = mechineID
+		self.examDate = examDate
+		self.IDCARD = IDCARD
+		self.residentEMPI = residentEMPI
+		self.residentName = residentName
+		self.examDoctorEMPI = examDoctorEMPI
+		self.examDoctorName = examDoctorName
+		self.auditDoctorEMPI = auditDoctorEMPI
+		self.auditDoctorName = auditDoctorName
+		self.SBP = SBP
+		self.DBP = DBP
+		self.MBP = MBP
+		self.pluse = pluse
+		self.conclusion = conclusion
+
 
 class tb_bloodpresure(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -8,10 +8,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/hea
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
+	return render_template('index.html')
+
+@app.route('/out', methods=['GET', 'POST'])
+def out():
 	if request.method == 'GET':
-		return 'index page'
+		return 'out page'
 	elif request.method == 'POST':
 		data = request.get_json(force = True, silent = True)
 		if data == None:
@@ -54,7 +58,33 @@ def uploadBloodSugar():
 
 @app.route('/dataplatform/api/uploadBodyComposion', methods=['GET', 'POST'])
 def uploadBodyComposion():
-	pass
+	if request.method == 'GET':
+		return 'uploadBodyComposion'
+	elif request.method == 'POST':
+		data = request.get_json()
+		realdata = data['data']
+		for item in realdata:
+			bwhdata = tb_bwh(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
+				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
+				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], 
+				item['abdominalBodyFatmass'], item['abdominalBodyFatmassAdjust'],item['trunkSoftleanmassFlag'],
+				item['visceralFatArea'], item['visceralFatmass'],item['weightAdjust'], item['weightHighLimit'],
+				item['weightlowlimit'], item['whr'],item['abdominalBodyFatmassHighLimit'], item['abdominalBodyFatmassLowLimit'],
+				item['adbominalSoftleanmass'], item['basicMetabolicrate'],item['bmi'], item['bmiHighLimit'],
+				item['bmiLowLimit'], item['bodyAge'],item['bodyFatRate'], item['bodyFatHeighLimit'],
+				item['bodyFatLowLimit'], item['bodyType'],item['extracellularFluid'], item['impedance'],
+				item['intracellularFluid'], item['leanBodymass'],item['leanBodymassHighLimit'], item['leanBodymassLowLimit'],
+				item['leftArmBodyFatmass'], item['leftArmSoftleanmass'],item['leftArmsoftleanmassFlag'], item['leftLegBodyFatmass'],
+				item['leftLegSoftleanmass'], item['leftLegSoftleanmassFlag'],item['massOfBodyFat'], item['mineral'],
+				item['mineralHighLimit'], item['mineralLowLimit'],item['obesexaxis'], item['protein'],
+				item['proteinHighLimit'], item['proteinLowLimit'],item['rightArmbodyFatmass'], item['rightArmSoftleanmassFlag'],
+				item['rightLegBodyFatmass'], item['rightLegSoftleanmassFlag'],item['rigtArmSoftleanmass'], item['rigtLegSoftleanmass'],
+				item['softleanmass'], item['softleanmassAdjust'],item['softleanmassHighLimit'], item['softleanmassLowLimit'],
+				item['standardWeight'], item['subcutaneousFatmass'],item['totalBodyWater'], item['totalBodyWaterHighLimit'],				
+				item['totalBodyWaterLowLimit'], item['totalEnergyConsumption'],item['conclusion'])
+			db.session.add(bwhdata)
+			db.session.commit()
+		return 'upload data ok'
 
 @app.route('/dataplatform/api/uploadBoneDensity', methods=['GET', 'POST'])
 def uploadBoneDensity():
@@ -83,8 +113,8 @@ def uploadBWH():
 		for item in realdata:
 			bwhdata = tb_bwh(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
 				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
-				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], item['hip'], item['bust'],
-				item['waist'], item['conclusion'])
+				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], 
+				item['hip'], item['bust'],item['waist'], item['conclusion'])
 			db.session.add(bwhdata)
 			db.session.commit()
 		return 'upload data ok'
@@ -108,7 +138,19 @@ def uploadEcg():
 
 @app.route('/dataplatform/api/uploadElectronicVision', methods=['GET', 'POST'])
 def uploadElectronicVision():
-	pass
+	if request.method == 'GET':
+		return 'uploadElectronicVision'
+	elif request.method == 'POST':
+		data = request.get_json()
+		realdata = data['data']
+		for item in realdata:
+			ecgdata = tb_ecg(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
+				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
+				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], item['checkType'],
+				item['leftEye'], item['rightEye'], item['conclusion'])
+			db.session.add(ecgdata)
+			db.session.commit()
+		return 'upload data ok'
 
 @app.route('/dataplatform/api/uploadHeighWeight', methods=['GET', 'POST'])
 def uploadHeighWeight():
@@ -146,7 +188,8 @@ def uploadLung():
 
 @app.route('/dataplatform/api/uploadResident', methods=['GET', 'POST'])
 def uploadResident():
-	pass
+	if request.method == 'GET':
+		return 'uploadResident'
 
 if __name__ == '__main__':
 	app.run(debug=True)
