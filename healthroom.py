@@ -9,6 +9,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/hea
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+url_prifix = '/dataplatform/api'
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -169,7 +171,7 @@ def uploadHeighWeight():
 			db.session.commit()
 		return json.dumps(data)
 
-@app.route('/dataplatform/api/uploadLung', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadLung', methods=['GET', 'POST'])
 def uploadLung():
 	if request.method == 'GET':
 		return 'uploadlung'
@@ -179,9 +181,16 @@ def uploadLung():
 		for item in realdata:
 			lungdata = tb_lung(data['familyCode'], data['familyName'], data['orgCode'], data['orgName'], 
 				data['dataSource'], data['machineID'], item['examDate'], item['residentEMPI'], item['residentEMPI'], 
-				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], item['HR'], item['PR'],
-				item['P_Duration'], item['T_Duration'], item['QT_Duration'], item['QTc_Duration'], item['P_Axis'], 
-				item['R_V5'], item['S_V1'], item['conclusion'])
+				item['residentName'], item['auditDoctorEMPI'], item['auditDoctorName'], 
+				item['FVC'], item['FEV1'],	item['FEV2'], 
+				item['FEV1Percent'], item['FEV2Percent'], item['FEV3Percent'], 
+				item['MMF'], item['MVV1'], item['BSA1'], 
+				item['M_B1'], item['PEF'], item['V75'], 
+				item['V50'], item['V25'], item['V50_V25'], item['V25_H'], 
+				item['MVV'], item['MVV_BSA'], item['VC'], item['TV'], 
+				item['IRV'], item['ERV'], item['IC'], item['MV'], item['RR'], 
+				item['Result'],	item['conclusion'])
+			item.get('')
 			db.session.add(lungdata)
 			db.session.commit()
 		return 'upload data ok'
