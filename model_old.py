@@ -84,7 +84,7 @@ class tb_bloodsugar(db.Model):
 		self.fastingBloodGlucose = fastingBloodGlucose
 		self.conclusion = conclusion
 
-class tb_bodycomposition(db.Model):
+class tb_bodycompositiondata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -248,7 +248,7 @@ class tb_bodycomposition(db.Model):
 		self.totalEnergyConsumption = totalEnergyConsumption
 		self.conclusion = conclusion
 
-class tb_bonedensity(db.Model):
+class tb_bonedensitydata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -310,7 +310,7 @@ class tb_bonedensity(db.Model):
 		self.conclusion = conclusion
 
 
-class tb_bwh(db.Model):
+class tb_bwhdata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -353,7 +353,7 @@ class tb_bwh(db.Model):
 		self.conclusion = conclusion
 
 
-class tb_ecg(db.Model):
+class tb_ecgdata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -408,7 +408,7 @@ class tb_ecg(db.Model):
 		self.conclusion = conclusion
 
 
-class tb_heighweight(db.Model):
+class tb_heighweightdata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -470,7 +470,7 @@ class tb_heighweight(db.Model):
 		self.bmi = bmi
 		self.conclusion = conclusion
 
-class tb_electronicvision(db.Model):
+class tb_electronicvisiondata(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -512,128 +512,3 @@ class tb_electronicvision(db.Model):
 		self.rightEye = rightEye
 		self.conclusion = conclusion
 
-
-class tb_lung(db.Model):
-	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-	familyCode = db.Column(db.String(255))
-	familyName = db.Column(db.String(255))
-	orgCode = db.Column(db.String(255))
-	orgName = db.Column(db.String(255))
-	dataSource = db.Column(db.Integer)
-	mechineID = db.Column(db.String(255))
-	examDate = db.Column(db.DateTime)
-	IDCARD = db.Column(db.String(255))
-	residentEMPI = db.Column(db.String(255))
-	residentName = db.Column(db.String(255))
-	examDoctorEMPI = db.Column(db.String(255))
-	examDoctorName = db.Column(db.String(255))
-	auditDoctorEMPI = db.Column(db.String(255))
-	auditDoctorName = db.Column(db.String(255))
-
-	FVC = db.Column(db.String(255))
-	FEV1 = db.Column(db.String(255))
-	FEV2 = db.Column(db.String(255))
-	FEV1Percent = db.Column(db.String(255))
-	FEV2Percent = db.Column(db.String(255))
-	FEV3Percent = db.Column(db.String(255))
-	MMF = db.Column(db.String(255))
-	MVV1 = db.Column(db.String(255))
-	BSA1 = db.Column(db.String(255))
-	M_B1 = db.Column(db.String(255))
-	PEF = db.Column(db.String(255))
-	V75 = db.Column(db.String(255))
-	V50 = db.Column(db.String(255))
-	V25 = db.Column(db.String(255))
-	V50_V25 = db.Column(db.String(255))
-	V25_H = db.Column(db.String(255))
-	MVV = db.Column(db.String(255))
-	MVV_BSA = db.Column(db.String(255))
-	VC = db.Column(db.String(255))
-	TV = db.Column(db.String(255))
-	IRV = db.Column(db.String(255))
-	ERV = db.Column(db.String(255))
-	IC = db.Column(db.String(255))
-	MV = db.Column(db.String(255))
-	RR = db.Column(db.String(255))
-	Result = db.Column(db.String(255))
-	conclusion = db.Column(db.String(255))
-
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, FVC, FEV1, FEV2, FEV1Percent, FEV2Percent, FEV3Percent, MMF,
-				MVV1, BSA1, M_B1, PEF, V75, V50, V25, V50_V25, V25_H, MVV, MVV_BSA, VC, TV, IRV, ERV, IC,
-				MV, RR, Result, conclusion):
-		self.familyCode = familyCode
-		self.familyName = familyName
-		self.orgCode = orgCode
-		self.orgName = orgName
-		self.dataSource = dataSource
-		self.mechineID = mechineID
-		self.examDate = examDate
-		self.IDCARD = IDCARD
-		self.residentEMPI = residentEMPI
-		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
-		self.auditDoctorEMPI = auditDoctorEMPI
-		self.auditDoctorName = auditDoctorName
-		self.FVC = FVC
-		self.FEV1 = FEV1
-		self.FEV2 = FEV2
-		self.FEV1Percent = FEV1Percent
-		self.FEV2Percent = FEV2Percent
-		self.FEV3Percent = FEV3Percent
-		self.MMF = MMF
-		self.MVV1 = MVV1
-		self.BSA1 = BSA1
-		self.M_B1 = M_B1
-		self.PEF = PEF
-		self.V75 = V75
-		self.V50 = V50
-		self.V25 = V25
-		self.V50_V25 = V50_V25
-		self.V25_H = V25_H
-		self.MVV = MVV
-		self.MVV_BSA = MVV_BSA
-		self.VC = VC
-		self.TV = TV
-		self.IRV = IRV
-		self.ERV = ERV
-		self.IC = IC
-		self.MV = MV
-		self.RR = RR
-		self.Result = Result
-		self.conclusion = conclusion
-
-
-
-'''
-肺功能：Lung function
-用力肺活量(FVC)
-1秒钟肺活量(FEV1)
-2秒钟肺活量(FEV2)
-3秒钟肺活量(FEV3)
-1秒率(FEV1%)
-2秒率(FEV2%)
-3秒率(FEV3%)
-最大呼气中段流速(MMF)
-最大通气量/1秒量(MVV1)
-BSA1(BSA1)
-M/B1(M/B1)
-峰值流量(PEF)
-呼气至75%肺活量时对应流速值(V75)
-呼气至50%肺活量时对应流速值(V50)
-呼气至25%肺活量时对应流速值(V25)
-呼气至50%25%肺活量时对应流速值(V50/V25)
-V25与身高之比(V25/H)
-实测最大通气量(MVV)
-体表面积(BSA)
-实测最大通气量与体表面积之比(MVV/BSA)
-实测肺活量(VC)
-潮气量(TV)
-补吸气量(IRV)
-补呼气量(ERV)
-深呼气量(IC)
-静息通气量(MV)
-呼吸频率(RR)
-结果(Result)
-'''
