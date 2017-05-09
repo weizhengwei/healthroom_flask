@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from model import *
 import json
+import logging
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom_flask'
@@ -210,8 +211,14 @@ def uploadResident():
 		db.session.commit()
 		return 'upload data ok'#json.dumps(data)
 
-if __name__ == '__main__':
+def main():
+	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
+	logging.basicConfig(format = logFormatStr, filename='error.log', level=logging.DEBUG)
 	app.run(debug=True, host='0.0.0.0', port=10086)
+
+if __name__ == '__main__':
+    main()
+	#app.run(debug=True, host='0.0.0.0', port=10086)
 
 
 
