@@ -10,38 +10,34 @@ class tb_resident(db.Model):
 	orgCode = db.Column(db.String(255))
 	orgName = db.Column(db.String(255))
 	dataSource = db.Column(db.Integer)
-	cardNo = db.Column(db.String(255))
+	mechineID = db.Column(db.Integer)
+	IDCARD = db.Column(db.String(255))
 	gender = db.Column(db.Integer)
 	birthday = db.Column(db.Date)
 	phone = db.Column(db.String(255))
+	nation = db.Column(db.String(255))
+	address = db.Column(db.String(255))
 	residentEMPI = db.Column(db.String(255))
 	residentName = db.Column(db.String(255))
-	examDoctorEMPI = db.Column(db.String(255))
-	examDoctorName = db.Column(db.String(255))
-	updateTime = db.Column(db.DateTime, default=datetime.now())
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
-	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechindID, examDate, IDCARD, residentEMPI, residentName,
-				auditDoctor, auditDoctorName, SBP, DBP, MBP, pluse, conclusion):
+	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, IDCARD, gender, birthday, 
+				phone, nation, address, residentEMPI, residentName):
 		self.familyCode = familyCode
 		self.familyName = familyName
 		self.orgCode = orgCode
 		self.orgName = orgName
-		# self.dataSource = dataSource
-		# self.mechineID = mechineID
-		# self.examDate = examDate
-		# self.IDCARD = IDCARD
-		# self.residentEMPI = residentEMPI
-		# self.residentName = residentName
-		# self.examDoctorEMPI = examDoctorEMPI
-		# self.examDoctorName = examDoctorName
-		# self.auditDoctorEMPI = auditDoctorEMPI
-		# self.auditDoctorName = auditDoctorName
-		# self.SBP = SBP
-		# self.DBP = DBP
-		# self.MBP = MBP
-		# self.pluse = pluse
-		# self.conclusion = conclusion
-
+		self.dataSource = dataSource
+		self.mechineID = mechineID
+		self.IDCARD = IDCARD
+		self.gender = gender
+		self.birthday = birthday
+		self.phone = phone
+		self.nation = nation
+		self.address = address
+		self.residentEMPI = residentEMPI
+		self.residentName = residentName
+		self.uploadTime = datetime.now()
 
 class tb_bloodpresure(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -64,6 +60,7 @@ class tb_bloodpresure(db.Model):
 	MBP = db.Column(db.Float)
 	pulse = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, SBP, DBP, MBP, pulse, conclusion):
@@ -86,7 +83,7 @@ class tb_bloodpresure(db.Model):
 		self.MBP = MBP
 		self.pulse = pulse
 		self.conclusion = conclusion
-
+		self.uploadTime = datetime.now()
 
 
 class tb_bloodsugar(db.Model):
@@ -107,6 +104,7 @@ class tb_bloodsugar(db.Model):
 	auditDoctorName = db.Column(db.String(255))
 	fastingBloodGlucose = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, fastingBloodGlucose, conclusion):
@@ -126,6 +124,7 @@ class tb_bloodsugar(db.Model):
 		self.auditDoctorName = auditDoctorName
 		self.fastingBloodGlucose = fastingBloodGlucose
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 class tb_bodycomposition(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -203,14 +202,15 @@ class tb_bodycomposition(db.Model):
 	totalBodyWaterLowLimit = db.Column(db.String(32))
 	totalEnergyConsumption = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, abdominalBodyFatmass,
 				abdominalBodyFatmassAdjust, trunkSoftleanmassFlag, visceralFatArea, visceralFatmass, weight, weightAdjust, weightHighLimit,
 				weightlowlimit, whr, abdominalBodyFatmassHighLimit, abdominalBodyFatmassLowLimit, adbominalSoftleanmass, basicMetabolicrate,
 				bmi, bmiHighLimit, bmiLowLimit, bodyAge, bodyFatRate, bodyFatHeighLimit, bodyFatLowLimit, bodyType, extracellularFluid, 
-				leanBodymass,leanBodymassHighLimit, leanBodymassLowLimit, leftArmBodyFatmass,leftArmSoftleanmass,
-				leftArmsoftleanmassFlag, leftLegBodyFatmass, leftLegSoftleanmass, leftLegSoftleanmassFlag,
+				impedance, intracellularFluid, leanBodymass,leanBodymassHighLimit, leanBodymassLowLimit, leftArmBodyFatmass,
+				leftArmSoftleanmass, leftArmsoftleanmassFlag, leftLegBodyFatmass, leftLegSoftleanmass, leftLegSoftleanmassFlag,
 				massOfBodyFat, mineral, mineralHighLimit, mineralLowLimit, obesexaxis, protein,
 				proteinHighLimit, proteinLowLimit, rightArmbodyFatmass, rightArmSoftleanmassFlag, 
 				rightLegBodyFatmass, rightLegSoftleanmassFlag, rigtArmSoftleanmass, rigtLegSoftleanmass,
@@ -227,10 +227,10 @@ class tb_bodycomposition(db.Model):
 		self.IDCARD = IDCARD
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
-		self.examDoctorEMPI = examDoctorEMPI
-		self.examDoctorName = examDoctorName
 		self.examDoctorEMPI = 'examDoctorEMPI'
 		self.examDoctorName = 'examDoctorName'
+		self.auditDoctorEMPI = auditDoctorEMPI
+		self.auditDoctorName = auditDoctorName
 
 		self.abdominalBodyFatmass = abdominalBodyFatmass
 		self.abdominalBodyFatmassAdjust = abdominalBodyFatmassAdjust
@@ -291,6 +291,7 @@ class tb_bodycomposition(db.Model):
 		self.totalBodyWaterLowLimit = totalBodyWaterLowLimit
 		self.totalEnergyConsumption = totalEnergyConsumption
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 class tb_bonedensity(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -321,6 +322,7 @@ class tb_bonedensity(db.Model):
 	bua = db.Column(db.String(32))
 	opr = db.Column(db.String(32))
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, acousticveLocity, tValue, zValue, thScale, 
@@ -352,6 +354,7 @@ class tb_bonedensity(db.Model):
 		self.bua = bua
 		self.opr = opr
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 
 class tb_bwh(db.Model):
@@ -374,6 +377,7 @@ class tb_bwh(db.Model):
 	bust = db.Column(db.Float)
 	waist = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, hip, bust, waist, conclusion):
@@ -395,6 +399,7 @@ class tb_bwh(db.Model):
 		self.bust = bust
 		self.waist = waist
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 
 class tb_ecg(db.Model):
@@ -423,6 +428,7 @@ class tb_ecg(db.Model):
 	R_V5 = db.Column(db.Integer)
 	S_V1 = db.Column(db.Integer)
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, HR, PR, P_Duration, T_Duration, QT_Duration, QTc_Duration, P_Axis, R_V5, S_V1, conclusion):
@@ -450,6 +456,7 @@ class tb_ecg(db.Model):
 		self.R_V5 = R_V5
 		self.S_V1 = S_V1
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 
 class tb_heighweight(db.Model):
@@ -472,6 +479,7 @@ class tb_heighweight(db.Model):
 	weight = db.Column(db.Float)
 	bmi = db.Column(db.Float)
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	# def __init__(self, data):
 	# 	self.familyCode = data['familyCode']
@@ -513,6 +521,7 @@ class tb_heighweight(db.Model):
 		self.weight = weight
 		self.bmi = bmi
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 class tb_electronicvision(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -534,6 +543,7 @@ class tb_electronicvision(db.Model):
 	leftEye = db.Column(db.String(128))
 	rightEye = db.Column(db.String(128))
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, checkType, leftEye, rightEye, conclusion):
@@ -555,6 +565,7 @@ class tb_electronicvision(db.Model):
 		self.leftEye = leftEye
 		self.rightEye = rightEye
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 
 class tb_lung(db.Model):
@@ -601,6 +612,7 @@ class tb_lung(db.Model):
 	RR = db.Column(db.String(255))
 	Result = db.Column(db.String(255))
 	conclusion = db.Column(db.String(255))
+	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, FVC, FEV1, FEV2, FEV1Percent, FEV2Percent, FEV3Percent, MMF,
@@ -647,6 +659,7 @@ class tb_lung(db.Model):
 		self.RR = RR
 		self.Result = Result
 		self.conclusion = conclusion
+		self.uploadTime = datetime.now()
 
 
 

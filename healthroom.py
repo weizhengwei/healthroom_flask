@@ -29,7 +29,7 @@ def out():
 def get_data(id):
 	return id
 
-@app.route('/dataplatform/api/uploadBloodPresure', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadBloodPresure', methods=['GET', 'POST'])
 def uploadBloodPresure():
 	if request.method == 'GET':
 		return 'uploadHeighWeight'
@@ -41,10 +41,10 @@ def uploadBloodPresure():
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('SBP'), item.get('DBP'), item.get('MBP'), item.get('pulse'), item.get('conclusion'))
 			db.session.add(bloodpresuredata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadBloodSugar', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadBloodSugar', methods=['GET', 'POST'])
 def uploadBloodSugar():
 	if request.method == 'GET':
 		return 'uploadHeighWeight'
@@ -56,10 +56,10 @@ def uploadBloodSugar():
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('fastingBloodGlucose'),  item.get('conclusion'))
 			db.session.add(bloodsugardata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadBodyComposion', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadBodyComposion', methods=['GET', 'POST'])
 def uploadBodyComposion():
 	if request.method == 'GET':
 		return 'uploadBodyComposion'
@@ -84,12 +84,12 @@ def uploadBodyComposion():
 				item.get('rightLegBodyFatmass'), item.get('rightLegSoftleanmassFlag'),item.get('rigtArmSoftleanmass'), item.get('rigtLegSoftleanmass'),
 				item.get('softleanmass'), item.get('softleanmassAdjust'),item.get('softleanmassHighLimit'), item.get('softleanmassLowLimit'),
 				item.get('standardWeight'), item.get('subcutaneousFatmass'),item.get('totalBodyWater'), item.get('totalBodyWaterHighLimit'),				
-				item.get('totalBodyWaterLowLimit'), item.get('totalEnergyConsumption'),item.get('conclusion'))
+				item.get('totalBodyWaterLowLimit'), item.get('totalEnergyConsumption'), item.get('conclusion'))
 			db.session.add(bodycompositiondata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadBoneDensity', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadBoneDensity', methods=['GET', 'POST'])
 def uploadBoneDensity():
 	if request.method == 'GET':
 		return 'uploadBoneDensity'
@@ -103,10 +103,10 @@ def uploadBoneDensity():
 				item.get('tValue'), item.get('zValue'), item.get('thScale'), item.get('toScale'), item.get('zYear'), item.get('riskLeavel'), 
 				item.get('oi'), item.get('youngAdult'), item.get('ageMatched'), item.get('bua'), item.get('opr'), item.get('conclusion'))
 			db.session.add(bonedensitydata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadBWH', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadBWH', methods=['GET', 'POST'])
 def uploadBWH():
 	if request.method == 'GET':
 		return 'uploadBWH'
@@ -119,10 +119,10 @@ def uploadBWH():
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('hip'), item.get('bust'),item.get('waist'), item.get('conclusion'))
 			db.session.add(bwhdata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadEcg', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadEcg', methods=['GET', 'POST'])
 def uploadEcg():
 	if request.method == 'GET':
 		return 'uploadEcg'
@@ -136,10 +136,10 @@ def uploadEcg():
 				item.get('P_Duration'), item.get('T_Duration'), item.get('QT_Duration'), item.get('QTc_Duration'), item.get('P_Axis'), 
 				item.get('R_V5'), item.get('S_V1'), item.get('conclusion'))
 			db.session.add(ecgdata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadElectronicVision', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadElectronicVision', methods=['GET', 'POST'])
 def uploadElectronicVision():
 	if request.method == 'GET':
 		return 'uploadElectronicVision'
@@ -152,10 +152,10 @@ def uploadElectronicVision():
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('checkType'),
 				item.get('leftEye'), item.get('rightEye'), item.get('conclusion'))
 			db.session.add(electronicvisiondata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
-@app.route('/dataplatform/api/uploadHeighWeight', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadHeighWeight', methods=['GET', 'POST'])
 def uploadHeighWeight():
 	if request.method == 'GET':
 		return 'uploadHeighWeight'
@@ -166,9 +166,8 @@ def uploadHeighWeight():
 			heighweightdata = tb_heighweight(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
 				item.get('residentName'), 'as', 'asd', item.get('heigh'), item.get('weight'), item.get('bmi'), item.get('conclusion'))
-		#heighweightdata = tb_heighweightdata()
 			db.session.add(heighweightdata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'#json.dumps(data)
 
 @app.route(url_prifix+'/uploadLung', methods=['GET', 'POST'])
@@ -191,17 +190,28 @@ def uploadLung():
 				item.get('IRV'), item.get('ERV'), item.get('IC'), item.get('MV'), item.get('RR'), 
 				item.get('Result'),	item.get('conclusion'))
 			db.session.add(lungdata)
-			db.session.commit()
+		db.session.commit()
 		return 'upload data ok'
 
 
-@app.route('/dataplatform/api/uploadResident', methods=['GET', 'POST'])
+@app.route(url_prifix+'/uploadResident', methods=['GET', 'POST'])
 def uploadResident():
 	if request.method == 'GET':
 		return 'uploadResident'
+	elif request.method == 'POST':
+		data = request.get_json()
+		realdata = data.get('data')
+		for item in realdata:
+			residentdata = tb_resident(item.get('familyCode'), item.get('familyName'), item.get('orgCode'), item.get('orgName'), 
+				item.get('dataSource'), item.get('machineID'), item.get('IDCARD'), item.get('gender'),
+				item.get('birthday'),item.get('phone'),item.get('nation'),item.get('address'),
+				item.get('residentEMPI'), item.get('residentEMPI'))
+			db.session.add(residentdata)
+		db.session.commit()
+		return 'upload data ok'#json.dumps(data)
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0', port=10086)
 
 
 
