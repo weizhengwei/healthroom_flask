@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from healthroom import db
 from datetime import datetime
-
+import json
 
 class tb_resident(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -568,7 +568,7 @@ class tb_electronicvision(db.Model):
 		self.uploadTime = datetime.now()
 
 
-class tb_lung(db.Model):
+class tb_lung(db.Model, dict):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
 	familyName = db.Column(db.String(255))
@@ -602,6 +602,7 @@ class tb_lung(db.Model):
 	V50_V25 = db.Column(db.String(255))
 	V25_H = db.Column(db.String(255))
 	MVV = db.Column(db.String(255))
+	BSA = db.Column(db.String(255))
 	MVV_BSA = db.Column(db.String(255))
 	VC = db.Column(db.String(255))
 	TV = db.Column(db.String(255))
@@ -616,7 +617,7 @@ class tb_lung(db.Model):
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
 				auditDoctorEMPI, auditDoctorName, FVC, FEV1, FEV2, FEV1Percent, FEV2Percent, FEV3Percent, MMF,
-				MVV1, BSA1, M_B1, PEF, V75, V50, V25, V50_V25, V25_H, MVV, MVV_BSA, VC, TV, IRV, ERV, IC,
+				MVV1, BSA1, M_B1, PEF, V75, V50, V25, V50_V25, V25_H, MVV, BSA, MVV_BSA, VC, TV, IRV, ERV, IC,
 				MV, RR, Result, conclusion):
 		self.familyCode = familyCode
 		self.familyName = familyName
@@ -649,6 +650,7 @@ class tb_lung(db.Model):
 		self.V50_V25 = V50_V25
 		self.V25_H = V25_H
 		self.MVV = MVV
+		self.BSA = BSA
 		self.MVV_BSA = MVV_BSA
 		self.VC = VC
 		self.TV = TV
@@ -661,8 +663,67 @@ class tb_lung(db.Model):
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
 
+	def getdata_en(self):
+		data_lung = {}
+		data_lung['FVC'] = self.FVC
+		data_lung['FEV1'] = self.FEV1
+		data_lung['FEV2'] = self.FEV2
+		data_lung['FEV1Percent'] = self.FEV1Percent
+		data_lung['FEV2Percent'] = self.FEV2Percent
+		data_lung['FEV3Percent'] = self.FEV3Percent
+		data_lung['MMF'] = self.MMF
+		data_lung['MVV1'] = self.MVV1
+		data_lung['BSA1'] = self.BSA1
+		data_lung['M_B1'] = self.M_B1
+		data_lung['PEF'] = self.PEF
+		data_lung['V75'] = self.V75
+		data_lung['V50'] = self.V50
+		data_lung['V25'] = self.V25
+		data_lung['V50_V25'] = self.V50_V25
+		data_lung['V25_H'] = self.V25_H
+		data_lung['MVV'] = self.MVV
+		data.lung['BSA'] = self.BSA
+		data_lung['MVV_BSA'] = self.MVV_BSA
+		data_lung['VC'] = self.VC
+		data_lung['TV'] = self.TV
+		data_lung['IRV'] = self.IRV
+		data_lung['ERV'] = self.ERV
+		data_lung['IC'] = self.IC
+		data_lung['MV'] = self.MV
+		data_lung['RR'] = self.RR
+		data_lung['Result'] = self.Result
+		return data_lung
 
-
+	def getdata_zh(self):
+		data_lung = {}
+		data_lung['用力肺活量'] = self.FVC
+		data_lung['1秒钟肺活量'] = self.FEV1
+		data_lung['2秒钟肺活量'] = self.FEV2
+		data_lung['1秒率(FEV1%)'] = self.FEV1Percent
+		data_lung['2秒率(FEV2%)'] = self.FEV2Percent
+		data_lung['3秒率(FEV3%)'] = self.FEV3Percent
+		data_lung['最大呼气中段流速(MMF)'] = self.MMF
+		data_lung['最大通气量/1秒量(MVV1)'] = self.MVV1
+		data_lung['BSA1(BSA1)'] = self.BSA1
+		data_lung['M_B1'] = self.M_B1
+		data_lung['峰值流量(PEF)'] = self.PEF
+		data_lung['呼气至75%肺活量时对应流速值(V75)'] = self.V75
+		data_lung['呼气至50%肺活量时对应流速值(V50)'] = self.V50
+		data_lung['呼气至25%肺活量时对应流速值(V25)'] = self.V25
+		data_lung['呼气至50%25%肺活量时对应流速值(V50/V25)'] = self.V50_V25
+		data_lung['V25与身高之比(V25/H)'] = self.V25_H
+		data_lung['实测最大通气量(MVV)'] = self.MVV
+		data_lung['体表面积(BSA)'] = self.BSA
+		data_lung['实测最大通气量与体表面积之比(MVV/BSA)'] = self.MVV_BSA
+		data_lung['实测肺活量(VC)'] = self.VC
+		data_lung['潮气量(TV)'] = self.TV
+		data_lung['补吸气量(IRV)'] = self.IRV
+		data_lung['补呼气量(ERV)'] = self.ERV
+		data_lung['深呼气量(IC)'] = self.IC
+		data_lung['静息通气量(MV)'] = self.MV
+		data_lung['呼吸频率(RR)'] = self.RR
+		data_lung['结果(Result)'] = self.Result
+		return data_lung
 '''
 肺功能：Lung function
 用力肺活量(FVC)

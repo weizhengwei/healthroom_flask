@@ -33,7 +33,7 @@ def get_data(id):
 @app.route(url_prifix+'/uploadBloodPresure', methods=['GET', 'POST'])
 def uploadBloodPresure():
 	if request.method == 'GET':
-		return 'uploadHeighWeight'
+		return 'uploadBloodPresure'
 	elif request.method == 'POST':
 		data = request.get_json()
 		realdata = data.get('data')
@@ -48,7 +48,7 @@ def uploadBloodPresure():
 @app.route(url_prifix+'/uploadBloodSugar', methods=['GET', 'POST'])
 def uploadBloodSugar():
 	if request.method == 'GET':
-		return 'uploadHeighWeight'
+		return 'uploadBloodSugar'
 	elif request.method == 'POST':
 		data = request.get_json()
 		realdata = data.get('data')
@@ -211,14 +211,65 @@ def uploadResident():
 		db.session.commit()
 		return 'upload data ok'#json.dumps(data)
 
+@app.route('/halthroom/getalldata_en')
+def getAllData_en():
+	#tb_lung.query.filter_by(IDCARD=idcard).first()
+	data_bloodpresure = tb_bloodpresure.query.first()
+	data_bloodsugar = tb_bloodsugar.query.first()
+	data_bodycomposition = tb_bodycomposition.query.first()
+	data_bonedensity = tb_bonedensity.query.first()
+	data_bwh = tb_bwh.query.first()
+	data_ecg = tb_ecg.query.first()
+	data_heighweight = tb_heighweight.query.first()
+	data_electronicvision = tb_electronicvision.query.first()
+	data_lung = tb_lung.query.first()
+	if d == None:
+		return 'no data'
+	AllData = {}
+	AllData['bloodpresure'] = data_bloodpresure.getdata_en()
+	AllData['bloodsugar'] = data_bloodsugar.getdata_en()
+	AllData['bodycomposition'] = data_bodycomposition.getdata_en()
+	AllData['bonedensity'] = data_bonedensity.getdata_en()
+	AllData['bwh'] = data_bwh.getdata_en()
+	AllData['ecg'] = data_ecg.getdata_en()
+	AllData['heighweight'] = data_heighweight.getdata_en()
+	AllData['electronicvision'] = data_electronicvision.getdata_en()
+	AllData['lung'] = data_lung.getdata_en()
+	return json.dumps(AllData)
+
+@app.route('/halthroom/getalldata_zh')
+def getAllData_zh():
+	data_bloodpresure = tb_bloodpresure.query.first()
+	data_bloodsugar = tb_bloodsugar.query.first()
+	data_bodycomposition = tb_bodycomposition.query.first()
+	data_bonedensity = tb_bonedensity.query.first()
+	data_bwh = tb_bwh.query.first()
+	data_ecg = tb_ecg.query.first()
+	data_heighweight = tb_heighweight.query.first()
+	data_electronicvision = tb_electronicvision.query.first()
+	data_lung = tb_lung.query.first()
+	if d == None:
+		return 'no data'
+	AllData = {}
+	AllData['bloodpresure'] = data_bloodpresure.getdata_en()
+	AllData['bloodsugar'] = data_bloodsugar.getdata_en()
+	AllData['bodycomposition'] = data_bodycomposition.getdata_en()
+	AllData['bonedensity'] = data_bonedensity.getdata_en()
+	AllData['bwh'] = data_bwh.getdata_en()
+	AllData['ecg'] = data_ecg.getdata_en()
+	AllData['heighweight'] = data_heighweight.getdata_en()
+	AllData['electronicvision'] = data_electronicvision.getdata_en()
+	AllData['lung'] = data_lung.getdata_en()
+	return json.dumps(AllData)
+
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
 	logging.basicConfig(format = logFormatStr, filename='error.log', level=logging.DEBUG)
 	app.run(debug=True, host='0.0.0.0', port=10086)
 
 if __name__ == '__main__':
-    main()
-	#app.run(debug=True, host='0.0.0.0', port=10086)
+    #main()
+	app.run(debug=True, host='0.0.0.0', port=10086)
 
 
 
