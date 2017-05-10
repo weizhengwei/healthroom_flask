@@ -22,14 +22,13 @@ def out():
 	if request.method == 'GET':
 		return 'out page'
 	elif request.method == 'POST':
-		data = request.get_json(force = True, silent = True)
-		if data == None:
-			return 'please post json data'
-		return json.dumps(data)
-
-@app.route('/data/<id>')
-def get_data(id):
-	return id
+		#data = request.get_json(force = True, silent = True)
+		#if data == None:
+		#	return 'please post json data'
+		#return json.dumps(data)
+		body = request.get_data()
+		header = request.headers.__str__()
+		return header+body
 
 @app.route(url_prifix+'/uploadBloodPresure', methods=['GET', 'POST'])
 def uploadBloodPresure():
@@ -244,8 +243,7 @@ def getAllData_en():
 	data_heighweight = tb_heighweight.query.first()
 	data_electronicvision = tb_electronicvision.query.first()
 	data_lung = tb_lung.query.first()
-	if d == None:
-		return 'no data'
+
 	AllData = {}
 	AllData['bloodpresure'] = data_bloodpresure.getdata_en()
 	AllData['bloodsugar'] = data_bloodsugar.getdata_en()
@@ -260,6 +258,7 @@ def getAllData_en():
 
 @app.route('/halthroom/getalldata_zh')
 def getAllData_zh():
+	data_resident = tb_resident.query.first()
 	data_bloodpresure = tb_bloodpresure.query.first()
 	data_bloodsugar = tb_bloodsugar.query.first()
 	data_bodycomposition = tb_bodycomposition.query.first()
@@ -269,19 +268,100 @@ def getAllData_zh():
 	data_heighweight = tb_heighweight.query.first()
 	data_electronicvision = tb_electronicvision.query.first()
 	data_lung = tb_lung.query.first()
-	if d == None:
-		return 'no data'
+
 	AllData = {}
-	AllData['bloodpresure'] = data_bloodpresure.getdata_en()
-	AllData['bloodsugar'] = data_bloodsugar.getdata_en()
+	AllData['resident'] = data_resident.getdata_zh()
+	AllData['bloodpresure'] = data_bloodpresure.getdata_zh()
+	AllData['bloodsugar'] = data_bloodsugar.getdata_zh()
 	AllData['bodycomposition'] = data_bodycomposition.getdata_en()
 	AllData['bonedensity'] = data_bonedensity.getdata_en()
-	AllData['bwh'] = data_bwh.getdata_en()
-	AllData['ecg'] = data_ecg.getdata_en()
-	AllData['heighweight'] = data_heighweight.getdata_en()
-	AllData['electronicvision'] = data_electronicvision.getdata_en()
-	AllData['lung'] = data_lung.getdata_en()
-	return json.dumps(AllData)
+	AllData['bwh'] = data_bwh.getdata_zh()
+	AllData['ecg'] = data_ecg.getdata_zh()
+	AllData['heighweight'] = data_heighweight.getdata_zh()
+	AllData['electronicvision'] = data_electronicvision.getdata_zh()
+	AllData['lung'] = data_lung.getdata_zh()
+	return json.dumps(AllData, ensure_ascii=False)
+
+@app.route('/get_en/<type>')
+def get_en(type):
+	data = {}
+	itype = int(type)
+	if itype == 0:
+		data_resident = tb_resident.query.first()
+		data = data_resident.getdata_en()
+	elif itype == 1:
+		data_bloodpresure = tb_bloodpresure.query.first()
+		data = data_bloodpresure.getdata_en()
+	elif itype == 2:
+		data_bloodsugar = tb_bloodsugar.query.first()
+		data = data_bloodsugar.getdata_en()
+	elif itype == 3:
+		data_bodycomposition = tb_bodycomposition.query.first()
+		data = data_bodycomposition.getdata_en()
+	elif itype == 4:
+		data_bonedensity = tb_bonedensity.query.first()
+		data = data_bonedensity.getdata_en()
+	elif itype == 5:
+		data_bwh = tb_bwh.query.first()
+		data = data_bwh.getdata_en()
+	elif itype == 6:
+		data_ecg = tb_ecg.query.first()
+		data = data_ecg.getdata_en()
+	elif itype == 7:
+		data_heighweight = tb_heighweight.query.first()
+		data = data_heighweight.getdata_en()
+	elif itype == 8:
+		data_electronicvision = tb_electronicvision.query.first()
+		data = data_electronicvision.getdata_en()
+	elif itype == 9:
+		data_lung = tb_lung.query.first()
+		data = data_lung.getdata_en()
+	else:
+		data_lung = tb_lung.query.first()
+		data = data_lung.getdata_en()
+
+	return json.dumps(data, ensure_ascii=False)
+
+
+@app.route('/get_zh/<type>')
+def get_zh(type):
+	data = {}
+	itype = int(type)
+	if itype == 0:
+		data_resident = tb_resident.query.first()
+		data = data_resident.getdata_zh()
+	elif itype == 1:
+		data_bloodpresure = tb_bloodpresure.query.first()
+		data = data_bloodpresure.getdata_zh()
+	elif itype == 2:
+		data_bloodsugar = tb_bloodsugar.query.first()
+		data = data_bloodsugar.getdata_zh()
+	elif itype == 3:
+		data_bodycomposition = tb_bodycomposition.query.first()
+		data = data_bodycomposition.getdata_zh()
+	elif itype == 4:
+		data_bonedensity = tb_bonedensity.query.first()
+		data = data_bonedensity.getdata_zh()
+	elif itype == 5:
+		data_bwh = tb_bwh.query.first()
+		data = data_bwh.getdata_zh()
+	elif itype == 6:
+		data_ecg = tb_ecg.query.first()
+		data = data_ecg.getdata_zh()
+	elif itype == 7:
+		data_heighweight = tb_heighweight.query.first()
+		data = data_heighweight.getdata_zh()
+	elif itype == 8:
+		data_electronicvision = tb_electronicvision.query.first()
+		data = data_electronicvision.getdata_zh()
+	elif itype == 9:
+		data_lung = tb_lung.query.first()
+		data = data_lung.getdata_zh()
+	else:
+		data_lung = tb_lung.query.first()
+		data = data_lung.getdata_zh()
+
+	return json.dumps(data, ensure_ascii=False)
 
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'

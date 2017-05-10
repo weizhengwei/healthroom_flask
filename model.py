@@ -3,6 +3,10 @@ from healthroom import db
 from datetime import datetime
 import json
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 class tb_resident(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	familyCode = db.Column(db.String(255))
@@ -38,6 +42,26 @@ class tb_resident(db.Model):
 		self.residentEMPI = residentEMPI
 		self.residentName = residentName
 		self.uploadTime = datetime.now()
+
+	def getdata_en(self):
+		data_resident_en = {}
+		data_resident_en['IDCARD'] = self.IDCARD
+		data_resident_en['gender'] = self.gender
+		data_resident_en['birthday'] = self.birthday.strftime('%Y-%m-%d')
+		data_resident_en['phone'] = self.phone
+		data_resident_en['nation'] = self.nation
+		data_resident_en['address'] = self.address
+		return data_resident_en
+
+	def getdata_zh(self):
+		data_resident_zh = {}
+		data_resident_zh['卡号'] = self.IDCARD
+		data_resident_zh['性别'] = self.gender
+		data_resident_zh['出生日期'] = self.birthday.strftime('%Y-%m-%d')
+		data_resident_zh['电话'] = self.phone
+		data_resident_zh['民族'] = self.nation
+		data_resident_zh['家庭住址'] = self.address
+		return data_resident_zh
 
 class tb_bloodpresure(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -85,6 +109,21 @@ class tb_bloodpresure(db.Model):
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
 
+	def getdata_en(self):
+		data_bloodpresure_en = {}
+		data_bloodpresure_en['SBP'] = self.SBP
+		data_bloodpresure_en['DBP'] = self.DBP
+		data_bloodpresure_en['MBP'] = self.MBP
+		data_bloodpresure_en['pulse'] = self.pulse
+		return data_bloodpresure_en
+
+	def getdata_zh(self):
+		data_bloodpresure_zh = {}
+		data_bloodpresure_zh['收缩压'] = self.SBP
+		data_bloodpresure_zh['舒张压'] = self.DBP
+		data_bloodpresure_zh['平均压'] = self.MBP
+		data_bloodpresure_zh['脉搏'] = self.pulse
+		return data_bloodpresure_zh
 
 class tb_bloodsugar(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -125,6 +164,15 @@ class tb_bloodsugar(db.Model):
 		self.fastingBloodGlucose = fastingBloodGlucose
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+	def getdata_en(self):
+		data_bloodsugar_en = {}
+		data_bloodsugar_en['fastingBloodGlucose'] = self.fastingBloodGlucose
+		return data_bloodsugar_en
+
+	def getdata_zh(self):
+		data_bloodsugar_zh = {}
+		data_bloodsugar_zh['空腹血糖'] = self.fastingBloodGlucose
+		return data_bloodsugar_zh
 
 class tb_bodycomposition(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -236,7 +284,7 @@ class tb_bodycomposition(db.Model):
 		self.abdominalBodyFatmassAdjust = abdominalBodyFatmassAdjust
 		self.trunkSoftleanmassFlag = trunkSoftleanmassFlag
 		self.visceralFatArea = visceralFatArea
-		self.visceralFatmass = visceralFatArea
+		self.visceralFatmass = visceralFatmass
 		self.weight = weight
 		self.weightAdjust = weightAdjust
 		self.weightHighLimit = weightHighLimit
@@ -292,6 +340,72 @@ class tb_bodycomposition(db.Model):
 		self.totalEnergyConsumption = totalEnergyConsumption
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+
+	def getdata_en(self):
+		data_bodycomposition_en = {}
+		data_bodycomposition_en['abdominalBodyFatmass'] = self.abdominalBodyFatmass
+		data_bodycomposition_en['abdominalBodyFatmassAdjust'] = self.abdominalBodyFatmassAdjust
+		data_bodycomposition_en['trunkSoftleanmassFlag'] = self.trunkSoftleanmassFlag
+		data_bodycomposition_en['visceralFatArea'] = self.visceralFatArea
+		data_bodycomposition_en['visceralFatmass'] = self.visceralFatmass
+		data_bodycomposition_en['weight'] = self.weight
+		data_bodycomposition_en['weightAdjust'] = self.weightAdjust
+		data_bodycomposition_en['weightHighLimit'] = self.weightHighLimit
+		data_bodycomposition_en['weightlowlimit'] = self.weightlowlimit
+		data_bodycomposition_en['whr'] = self.whr
+		data_bodycomposition_en['abdominalBodyFatmassHighLimit'] = self.abdominalBodyFatmassHighLimit
+		data_bodycomposition_en['abdominalBodyFatmassLowLimit'] = self.abdominalBodyFatmassLowLimit
+		data_bodycomposition_en['adbominalSoftleanmass'] = self.adbominalSoftleanmass
+		data_bodycomposition_en['basicMetabolicrate'] = self.basicMetabolicrate
+		data_bodycomposition_en['bmi'] = self.bmi
+		data_bodycomposition_en['bmiHighLimit'] = self.bmiHighLimit
+		data_bodycomposition_en['bmiLowLimit'] = self.bmiLowLimit
+		data_bodycomposition_en['bodyAge'] = self.bodyAge
+		data_bodycomposition_en['bodyFatRate'] = self.bodyFatRate
+		data_bodycomposition_en['bodyFatHeighLimit'] = self.bodyFatHeighLimit
+		data_bodycomposition_en['bodyFatLowLimit'] = self.bodyFatLowLimit
+		data_bodycomposition_en['bodyType'] = self.bodyType
+		data_bodycomposition_en['extracellularFluid'] = self.extracellularFluid
+		data_bodycomposition_en['impedance'] = self.impedance
+		data_bodycomposition_en['intracellularFluid'] = self.intracellularFluid
+		data_bodycomposition_en['leanBodymass'] = self.leanBodymass
+		data_bodycomposition_en['leanBodymassHighLimit'] = self.leanBodymassHighLimit
+		data_bodycomposition_en['leanBodymassLowLimit'] = self.leanBodymassLowLimit
+		data_bodycomposition_en['leftArmBodyFatmass'] = self.leftArmBodyFatmass
+		data_bodycomposition_en['leftArmSoftleanmass'] = self.leftArmSoftleanmass
+		data_bodycomposition_en['leftArmsoftleanmassFlag'] = self.leftArmsoftleanmassFlag
+		data_bodycomposition_en['leftLegBodyFatmass'] = self.leftLegBodyFatmass
+		data_bodycomposition_en['leftLegSoftleanmass'] = self.leftLegSoftleanmass
+		data_bodycomposition_en['leftLegSoftleanmassFlag'] = self.leftLegSoftleanmassFlag
+		data_bodycomposition_en['massOfBodyFat'] = self.massOfBodyFat
+		data_bodycomposition_en['mineral'] = self.mineral
+		data_bodycomposition_en['mineralHighLimit'] = self.mineralHighLimit
+		data_bodycomposition_en['mineralLowLimit'] = self.mineralLowLimit
+		data_bodycomposition_en['obesexaxis'] = self.obesexaxis
+		data_bodycomposition_en['protein'] = self.protein
+		data_bodycomposition_en['proteinHighLimit'] = self.proteinHighLimit
+		data_bodycomposition_en['proteinLowLimit'] = self.proteinLowLimit
+		data_bodycomposition_en['rightArmbodyFatmass'] = self.rightArmbodyFatmass
+		data_bodycomposition_en['rightArmSoftleanmassFlag'] = self.rightArmSoftleanmassFlag
+		data_bodycomposition_en['rightLegBodyFatmass'] = self.rightLegBodyFatmass
+		data_bodycomposition_en['rigtArmSoftleanmass'] = self.rigtArmSoftleanmass
+		data_bodycomposition_en['rigtLegSoftleanmass'] = self.rigtLegSoftleanmass
+		data_bodycomposition_en['softleanmass'] = self.softleanmass
+		data_bodycomposition_en['softleanmassAdjust'] = self.softleanmassAdjust
+		data_bodycomposition_en['softleanmassHighLimit'] = self.softleanmassHighLimit
+		data_bodycomposition_en['softleanmassLowLimit'] = self.softleanmassLowLimit
+		data_bodycomposition_en['standardWeight'] = self.standardWeight
+		data_bodycomposition_en['subcutaneousFatmass'] = self.subcutaneousFatmass
+		data_bodycomposition_en['totalBodyWater'] = self.totalBodyWater
+		data_bodycomposition_en['totalBodyWaterHighLimit'] = self.totalBodyWaterHighLimit
+		data_bodycomposition_en['totalBodyWaterLowLimit'] = self.totalBodyWaterLowLimit
+		data_bodycomposition_en['totalEnergyConsumption'] = self.totalEnergyConsumption
+		return data_bodycomposition_en
+
+	def getdata_zh(self):
+		data_bodycomposition_zh = {}
+		return data_bodycomposition_zh
+
 
 class tb_bonedensity(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -356,6 +470,28 @@ class tb_bonedensity(db.Model):
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
 
+	def getdata_en(self):
+		data_bonedensity_en = {}
+		data_bonedensity_en['acousticveLocity'] = self.acousticveLocity
+		data_bonedensity_en['tValue'] = self.tValue
+		data_bonedensity_en['zValue'] = self.zValue
+		data_bonedensity_en['thScale'] = self.thScale
+		data_bonedensity_en['toScale'] = self.toScale
+		data_bonedensity_en['zYear'] = self.zYear
+		data_bonedensity_en['riskLeavel'] = self.riskLeavel
+		data_bonedensity_en['oi'] = self.oi
+		data_bonedensity_en['youngAdult'] = self.youngAdult
+		data_bonedensity_en['ageMatched'] = self.ageMatched
+		data_bonedensity_en['bua'] = self.bua
+		data_bonedensity_en['opr'] = self.opr
+		return data_bonedensity_en
+
+	def getdata_zh(self):
+		data_bonedensity_zh = {}
+		data_bonedensity_zh['tValue'] = self.tValue
+		data_bonedensity_zh['zValue'] = self.zValue
+		data_bonedensity_zh['zYear'] = self.zYear
+		return data_bonedensity_zh
 
 class tb_bwh(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -400,7 +536,19 @@ class tb_bwh(db.Model):
 		self.waist = waist
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+	def getdata_en(self):
+		data_bwh_en = {}
+		data_bwh_en['hip'] = self.hip
+		data_bwh_en['bust'] = self.bust
+		data_bwh_en['waist'] = self.waist
+		return data_bwh_en
 
+	def getdata_zh(self):
+		data_bwh_zh = {}
+		data_bwh_zh['胸围'] = self.hip
+		data_bwh_zh['臀围'] = self.bust
+		data_bwh_zh['胸围'] = self.waist
+		return data_bwh_zh
 
 class tb_ecg(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -457,7 +605,31 @@ class tb_ecg(db.Model):
 		self.S_V1 = S_V1
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+	def getdata_en(self):
+		data_ecg_en = {}
+		data_ecg_en['HR'] = self.HR
+		data_ecg_en['PR'] = self.PR
+		data_ecg_en['P_Duration'] = self.P_Duration
+		data_ecg_en['T_Duration'] = self.T_Duration
+		data_ecg_en['QT_Duration'] = self.QT_Duration
+		data_ecg_en['QTc_Duration'] = self.QTc_Duration
+		data_ecg_en['P_Axis'] = self.P_Axis
+		data_ecg_en['R_V5'] = self.R_V5
+		data_ecg_en['S_V1'] = self.S_V1
+		return data_ecg_en
 
+	def getdata_zh(self):
+		data_ecg_zh = {}
+		data_ecg_zh['心率'] = self.HR
+		data_ecg_zh['PR间期'] = self.PR
+		data_ecg_zh['P时限'] = self.P_Duration
+		data_ecg_zh['T时限'] = self.T_Duration
+		data_ecg_zh['QT时限'] = self.QT_Duration
+		data_ecg_zh['QTc时限'] = self.QTc_Duration
+		data_ecg_zh['P电轴'] = self.P_Axis
+		data_ecg_zh['R_V5'] = self.R_V5
+		data_ecg_zh['S_V1'] = self.S_V1
+		return data_ecg_zh
 
 class tb_heighweight(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -522,6 +694,19 @@ class tb_heighweight(db.Model):
 		self.bmi = bmi
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+	def getdata_en(self):
+		data_heighweight_en = {}
+		data_heighweight_en['heigh'] = self.heigh
+		data_heighweight_en['weight'] = self.weight
+		data_heighweight_en['bmi'] = self.bmi
+		return data_heighweight_en
+
+	def getdata_zh(self):
+		data_heighweight_zh = {}
+		data_heighweight_zh['身高'] = self.heigh
+		data_heighweight_zh['体重'] = self.weight
+		data_heighweight_zh['BMI(体重/身高^2)'] = self.bmi
+		return data_heighweight_zh
 
 class tb_electronicvision(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -566,7 +751,19 @@ class tb_electronicvision(db.Model):
 		self.rightEye = rightEye
 		self.conclusion = conclusion
 		self.uploadTime = datetime.now()
+	def getdata_en(self):
+		data_electronicvision_en = {}
+		data_electronicvision_en['checkType'] = self.checkType
+		data_electronicvision_en['leftEye'] = self.leftEye
+		data_electronicvision_en['rightEye'] = self.rightEye
+		return data_electronicvision_en
 
+	def getdata_zh(self):
+		data_electronicvision_zh = {}
+		data_electronicvision_zh['检查类型'] = self.checkType
+		data_electronicvision_zh['左眼'] = self.leftEye
+		data_electronicvision_zh['右眼'] = self.rightEye
+		return data_electronicvision_zh
 
 class tb_lung(db.Model, dict):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -664,66 +861,67 @@ class tb_lung(db.Model, dict):
 		self.uploadTime = datetime.now()
 
 	def getdata_en(self):
-		data_lung = {}
-		data_lung['FVC'] = self.FVC
-		data_lung['FEV1'] = self.FEV1
-		data_lung['FEV2'] = self.FEV2
-		data_lung['FEV1Percent'] = self.FEV1Percent
-		data_lung['FEV2Percent'] = self.FEV2Percent
-		data_lung['FEV3Percent'] = self.FEV3Percent
-		data_lung['MMF'] = self.MMF
-		data_lung['MVV1'] = self.MVV1
-		data_lung['BSA1'] = self.BSA1
-		data_lung['M_B1'] = self.M_B1
-		data_lung['PEF'] = self.PEF
-		data_lung['V75'] = self.V75
-		data_lung['V50'] = self.V50
-		data_lung['V25'] = self.V25
-		data_lung['V50_V25'] = self.V50_V25
-		data_lung['V25_H'] = self.V25_H
-		data_lung['MVV'] = self.MVV
-		data.lung['BSA'] = self.BSA
-		data_lung['MVV_BSA'] = self.MVV_BSA
-		data_lung['VC'] = self.VC
-		data_lung['TV'] = self.TV
-		data_lung['IRV'] = self.IRV
-		data_lung['ERV'] = self.ERV
-		data_lung['IC'] = self.IC
-		data_lung['MV'] = self.MV
-		data_lung['RR'] = self.RR
-		data_lung['Result'] = self.Result
-		return data_lung
+		data_lung_en = {}
+		data_lung_en['FVC'] = self.FVC
+		data_lung_en['FEV1'] = self.FEV1
+		data_lung_en['FEV2'] = self.FEV2
+		data_lung_en['FEV1Percent'] = self.FEV1Percent
+		data_lung_en['FEV2Percent'] = self.FEV2Percent
+		data_lung_en['FEV3Percent'] = self.FEV3Percent
+		data_lung_en['MMF'] = self.MMF
+		data_lung_en['MVV1'] = self.MVV1
+		data_lung_en['BSA1'] = self.BSA1
+		data_lung_en['M_B1'] = self.M_B1
+		data_lung_en['PEF'] = self.PEF
+		data_lung_en['V75'] = self.V75
+		data_lung_en['V50'] = self.V50
+		data_lung_en['V25'] = self.V25
+		data_lung_en['V50_V25'] = self.V50_V25
+		data_lung_en['V25_H'] = self.V25_H
+		data_lung_en['MVV'] = self.MVV
+		data_lung_en['BSA'] = self.BSA
+		data_lung_en['MVV_BSA'] = self.MVV_BSA
+		data_lung_en['VC'] = self.VC
+		data_lung_en['TV'] = self.TV
+		data_lung_en['IRV'] = self.IRV
+		data_lung_en['ERV'] = self.ERV
+		data_lung_en['IC'] = self.IC
+		data_lung_en['MV'] = self.MV
+		data_lung_en['RR'] = self.RR
+		data_lung_en['Result'] = self.Result
+		return data_lung_en
 
 	def getdata_zh(self):
-		data_lung = {}
-		data_lung['用力肺活量'] = self.FVC
-		data_lung['1秒钟肺活量'] = self.FEV1
-		data_lung['2秒钟肺活量'] = self.FEV2
-		data_lung['1秒率(FEV1%)'] = self.FEV1Percent
-		data_lung['2秒率(FEV2%)'] = self.FEV2Percent
-		data_lung['3秒率(FEV3%)'] = self.FEV3Percent
-		data_lung['最大呼气中段流速(MMF)'] = self.MMF
-		data_lung['最大通气量/1秒量(MVV1)'] = self.MVV1
-		data_lung['BSA1(BSA1)'] = self.BSA1
-		data_lung['M_B1'] = self.M_B1
-		data_lung['峰值流量(PEF)'] = self.PEF
-		data_lung['呼气至75%肺活量时对应流速值(V75)'] = self.V75
-		data_lung['呼气至50%肺活量时对应流速值(V50)'] = self.V50
-		data_lung['呼气至25%肺活量时对应流速值(V25)'] = self.V25
-		data_lung['呼气至50%25%肺活量时对应流速值(V50/V25)'] = self.V50_V25
-		data_lung['V25与身高之比(V25/H)'] = self.V25_H
-		data_lung['实测最大通气量(MVV)'] = self.MVV
-		data_lung['体表面积(BSA)'] = self.BSA
-		data_lung['实测最大通气量与体表面积之比(MVV/BSA)'] = self.MVV_BSA
-		data_lung['实测肺活量(VC)'] = self.VC
-		data_lung['潮气量(TV)'] = self.TV
-		data_lung['补吸气量(IRV)'] = self.IRV
-		data_lung['补呼气量(ERV)'] = self.ERV
-		data_lung['深呼气量(IC)'] = self.IC
-		data_lung['静息通气量(MV)'] = self.MV
-		data_lung['呼吸频率(RR)'] = self.RR
-		data_lung['结果(Result)'] = self.Result
-		return data_lung
+		data_lung_zh = {}
+		data_lung_zh['用力肺活量'] = self.FVC
+		data_lung_zh['1秒钟肺活量'] = self.FEV1
+		data_lung_zh['2秒钟肺活量'] = self.FEV2
+		data_lung_zh['1秒率(FEV1%)'] = self.FEV1Percent
+		data_lung_zh['2秒率(FEV2%)'] = self.FEV2Percent
+		data_lung_zh['3秒率(FEV3%)'] = self.FEV3Percent
+		data_lung_zh['最大呼气中段流速(MMF)'] = self.MMF
+		data_lung_zh['最大通气量/1秒量(MVV1)'] = self.MVV1
+		data_lung_zh['BSA1(BSA1)'] = self.BSA1
+		data_lung_zh['M_B1'] = self.M_B1
+		data_lung_zh['峰值流量(PEF)'] = self.PEF
+		data_lung_zh['呼气至75%肺活量时对应流速值(V75)'] = self.V75
+		data_lung_zh['呼气至50%肺活量时对应流速值(V50)'] = self.V50
+		data_lung_zh['呼气至25%肺活量时对应流速值(V25)'] = self.V25
+		data_lung_zh['呼气至50%25%肺活量时对应流速值(V50/V25)'] = self.V50_V25
+		data_lung_zh['V25与身高之比(V25/H)'] = self.V25_H
+		data_lung_zh['实测最大通气量(MVV)'] = self.MVV
+		data_lung_zh['体表面积(BSA)'] = self.BSA
+		data_lung_zh['实测最大通气量与体表面积之比(MVV/BSA)'] = self.MVV_BSA
+		data_lung_zh['实测肺活量(VC)'] = self.VC
+		data_lung_zh['潮气量(TV)'] = self.TV
+		data_lung_zh['补吸气量(IRV)'] = self.IRV
+		data_lung_zh['补呼气量(ERV)'] = self.ERV
+		data_lung_zh['深呼气量(IC)'] = self.IC
+		data_lung_zh['静息通气量(MV)'] = self.MV
+		data_lung_zh['呼吸频率(RR)'] = self.RR
+		data_lung_zh['结果(Result)'] = self.Result
+		return data_lung_zh
+
 '''
 肺功能：Lung function
 用力肺活量(FVC)
