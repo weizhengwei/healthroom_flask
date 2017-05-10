@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 url_prifix = '/dataplatform/api'
+error_msg = 'the data you post is not json'
 
 @app.route('/')
 def index():
@@ -36,6 +37,8 @@ def uploadBloodPresure():
 		return 'uploadBloodPresure'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			bloodpresuredata = tb_bloodpresure(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -51,6 +54,8 @@ def uploadBloodSugar():
 		return 'uploadBloodSugar'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			bloodsugardata = tb_bloodsugar(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -66,6 +71,8 @@ def uploadBodyComposion():
 		return 'uploadBodyComposion'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			bodycompositiondata = tb_bodycomposition(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -96,6 +103,8 @@ def uploadBoneDensity():
 		return 'uploadBoneDensity'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			bonedensitydata = tb_bonedensity(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -113,6 +122,8 @@ def uploadBWH():
 		return 'uploadBWH'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			bwhdata = tb_bwh(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -129,6 +140,8 @@ def uploadEcg():
 		return 'uploadEcg'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			ecgdata = tb_ecg(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -146,6 +159,8 @@ def uploadElectronicVision():
 		return 'uploadElectronicVision'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			electronicvisiondata = tb_electronicvision(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -162,6 +177,8 @@ def uploadHeighWeight():
 		return 'uploadHeighWeight'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			heighweightdata = tb_heighweight(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -177,6 +194,8 @@ def uploadLung():
 		return 'uploadlung'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			lungdata = tb_lung(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
@@ -201,6 +220,8 @@ def uploadResident():
 		return 'uploadResident'
 	elif request.method == 'POST':
 		data = request.get_json()
+		if data == None:
+			return error_msg
 		realdata = data.get('data')
 		for item in realdata:
 			residentdata = tb_resident(item.get('familyCode'), item.get('familyName'), item.get('orgCode'), item.get('orgName'), 
