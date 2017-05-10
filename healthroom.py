@@ -363,6 +363,24 @@ def get_zh(type):
 
 	return json.dumps(data, ensure_ascii=False)
 
+@app.route('/query', methods=['GET', 'POST'])
+def query():
+	if request.method == 'GET':
+		return 'pls post sql'
+	else:
+		sql = request.get_data()
+		if sql == None:
+			return 'post data can not be none'
+		import pymysql
+		db = pymysql.connect('localhost', 'root', 'r00t', 'healthroom_flask')
+		cursor = db.cursor()
+		#cursor.execute('select * from tb_lung')
+		cursor.execute(sql)
+		data = cursor.fetchone()
+		db.close()
+		return data.__str__()
+		
+
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
 	logging.basicConfig(format = logFormatStr, filename='error.log', level=logging.DEBUG)
