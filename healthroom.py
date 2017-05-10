@@ -205,9 +205,9 @@ def uploadLung():
 				item.get('MMF'), item.get('MVV1'), item.get('BSA1'), 
 				item.get('M_B1'), item.get('PEF'), item.get('V75'), 
 				item.get('V50'), item.get('V25'), item.get('V50_V25'), item.get('V25_H'), 
-				item.get('MVV'), item.get('MVV_BSA'), item.get('VC'), item.get('TV'), 
-				item.get('IRV'), item.get('ERV'), item.get('IC'), item.get('MV'), item.get('RR'), 
-				item.get('Result'),	item.get('conclusion'))
+				item.get('MVV'), item.get('BSA'), item.get('MVV_BSA'), item.get('VC'), 
+				item.get('TV'), item.get('IRV'), item.get('ERV'), item.get('IC'), 
+				item.get('MV'), item.get('RR'), item.get('Result'),	item.get('conclusion'))
 			db.session.add(lungdata)
 		db.session.commit()
 		return 'upload data ok'
