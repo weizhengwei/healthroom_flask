@@ -403,8 +403,65 @@ class tb_bodycomposition(db.Model):
 		return data_bodycomposition_en
 
 	def getdata_zh(self):
-		data_bodycomposition_zh = {}
-		return data_bodycomposition_zh
+		data_bodycomposition_en = {}
+		data_bodycomposition_en['躯干脂肪量'] = self.abdominalBodyFatmass
+		data_bodycomposition_en['体脂肪量调节值'] = self.abdominalBodyFatmassAdjust
+		data_bodycomposition_en['躯干肌肉水平'] = self.trunkSoftleanmassFlag
+		data_bodycomposition_en['内脏脂肪面积'] = self.visceralFatArea
+		data_bodycomposition_en['内脏脂肪质量'] = self.visceralFatmass
+		data_bodycomposition_en['体重'] = self.weight
+		data_bodycomposition_en['体重调节值'] = self.weightAdjust
+		data_bodycomposition_en['体重高值'] = self.weightHighLimit
+		data_bodycomposition_en['体重低值'] = self.weightlowlimit
+		data_bodycomposition_en['腰臀比'] = self.whr
+		data_bodycomposition_en['体脂肪量高值'] = self.abdominalBodyFatmassHighLimit
+		data_bodycomposition_en['体脂肪量低值'] = self.abdominalBodyFatmassLowLimit
+		data_bodycomposition_en['躯干肌肉量'] = self.adbominalSoftleanmass
+		data_bodycomposition_en['基础代谢量'] = self.basicMetabolicrate
+		data_bodycomposition_en['身体质量指数'] = self.bmi
+		data_bodycomposition_en['身体质量指数高值'] = self.bmiHighLimit
+		data_bodycomposition_en['身体质量指数低值'] = self.bmiLowLimit
+		data_bodycomposition_en['身体年龄'] = self.bodyAge
+		data_bodycomposition_en['体脂肪率'] = self.bodyFatRate
+		data_bodycomposition_en['体脂肪率高值'] = self.bodyFatHeighLimit
+		data_bodycomposition_en['体脂肪率低值'] = self.bodyFatLowLimit
+		data_bodycomposition_en['bodyType'] = self.bodyType
+		data_bodycomposition_en['细胞外液'] = self.extracellularFluid
+		data_bodycomposition_en['阻抗'] = self.impedance
+		data_bodycomposition_en['细胞内液'] = self.intracellularFluid
+		data_bodycomposition_en['去脂体重'] = self.leanBodymass
+		data_bodycomposition_en['去脂体重高值'] = self.leanBodymassHighLimit
+		data_bodycomposition_en['去脂体重低值'] = self.leanBodymassLowLimit
+		data_bodycomposition_en['左上肢体脂肪量'] = self.leftArmBodyFatmass
+		data_bodycomposition_en['左上肢肌肉量'] = self.leftArmSoftleanmass
+		data_bodycomposition_en['左臂肌肉水平'] = self.leftArmsoftleanmassFlag
+		data_bodycomposition_en['左下肢体脂肪量'] = self.leftLegBodyFatmass
+		data_bodycomposition_en['左下肢肌肉量'] = self.leftLegSoftleanmass
+		data_bodycomposition_en['左腿肌肉水平'] = self.leftLegSoftleanmassFlag
+		data_bodycomposition_en['体脂肪量'] = self.massOfBodyFat
+		data_bodycomposition_en['无机盐'] = self.mineral
+		data_bodycomposition_en['无机盐高值'] = self.mineralHighLimit
+		data_bodycomposition_en['无机盐低值'] = self.mineralLowLimit
+		data_bodycomposition_en['obesexaxis'] = self.obesexaxis
+		data_bodycomposition_en['蛋白质'] = self.protein
+		data_bodycomposition_en['蛋白质高值'] = self.proteinHighLimit
+		data_bodycomposition_en['蛋白质低值'] = self.proteinLowLimit
+		data_bodycomposition_en['右上肢体脂肪量'] = self.rightArmbodyFatmass
+		data_bodycomposition_en['右臂肌肉水平'] = self.rightArmSoftleanmassFlag
+		data_bodycomposition_en['右下肢体脂肪量'] = self.rightLegBodyFatmass
+		data_bodycomposition_en['右上肢肌肉量'] = self.rigtArmSoftleanmass
+		data_bodycomposition_en['右下肢肌肉量'] = self.rigtLegSoftleanmass
+		data_bodycomposition_en['肌肉量'] = self.softleanmass
+		data_bodycomposition_en['肌肉量调节值'] = self.softleanmassAdjust
+		data_bodycomposition_en['肌肉量高值'] = self.softleanmassHighLimit
+		data_bodycomposition_en['肌肉量低值'] = self.softleanmassLowLimit
+		data_bodycomposition_en['标准体重'] = self.standardWeight
+		data_bodycomposition_en['皮下脂肪量'] = self.subcutaneousFatmass
+		data_bodycomposition_en['身体水分'] = self.totalBodyWater
+		data_bodycomposition_en['身体水分高值'] = self.totalBodyWaterHighLimit
+		data_bodycomposition_en['身体水分低值'] = self.totalBodyWaterLowLimit
+		data_bodycomposition_en['总能量消耗'] = self.totalEnergyConsumption
+		return data_bodycomposition_en
 
 
 class tb_bonedensity(db.Model):
@@ -488,9 +545,18 @@ class tb_bonedensity(db.Model):
 
 	def getdata_zh(self):
 		data_bonedensity_zh = {}
-		data_bonedensity_zh['tValue'] = self.tValue
-		data_bonedensity_zh['zValue'] = self.zValue
-		data_bonedensity_zh['zYear'] = self.zYear
+		data_bonedensity_zh['声速'] = self.acousticveLocity
+		data_bonedensity_zh['T值'] = self.tValue
+		data_bonedensity_zh['Z值'] = self.zValue
+		data_bonedensity_zh['测值/峰值比'] = self.thScale
+		data_bonedensity_zh['测值/均值比'] = self.toScale
+		data_bonedensity_zh['Z值相对年龄'] = self.zYear
+		data_bonedensity_zh['相对骨折风险'] = self.riskLeavel
+		data_bonedensity_zh['骨质疏松指数'] = self.oi
+		data_bonedensity_zh['成人对比【%】'] = self.youngAdult
+		data_bonedensity_zh['同龄对比【%】'] = self.ageMatched
+		data_bonedensity_zh['宽波段超声衰减值'] = self.bua
+		data_bonedensity_zh['多次测量误差'] = self.opr
 		return data_bonedensity_zh
 
 class tb_bwh(db.Model):
