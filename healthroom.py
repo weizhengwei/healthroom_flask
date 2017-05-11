@@ -231,6 +231,11 @@ def uploadResident():
 		db.session.commit()
 		return 'upload data ok'#json.dumps(data)
 
+def getzh(data):
+	if data == None:
+		return {}
+	return data.getdata_zh()
+
 @app.route('/halthroom/getalldata_en')
 def getAllData_en():
 	#tb_lung.query.filter_by(IDCARD=idcard).first()
@@ -245,16 +250,21 @@ def getAllData_en():
 	data_lung = tb_lung.query.first()
 
 	AllData = {}
-	AllData['bloodpresure'] = data_bloodpresure.getdata_en()
-	AllData['bloodsugar'] = data_bloodsugar.getdata_en()
-	AllData['bodycomposition'] = data_bodycomposition.getdata_en()
-	AllData['bonedensity'] = data_bonedensity.getdata_en()
-	AllData['bwh'] = data_bwh.getdata_en()
-	AllData['ecg'] = data_ecg.getdata_en()
-	AllData['heighweight'] = data_heighweight.getdata_en()
-	AllData['electronicvision'] = data_electronicvision.getdata_en()
-	AllData['lung'] = data_lung.getdata_en()
+	AllData['bloodpresure'] = getzh(data_bloodpresure)
+	AllData['bloodsugar'] = getzh(data_bloodsugar)
+	AllData['bodycomposition'] = getzh(data_bodycomposition)
+	AllData['bonedensity'] = getzh(data_bonedensity)
+	AllData['bwh'] = getzh(data_bwh)
+	AllData['ecg'] = getzh(data_ecg)
+	AllData['heighweight'] = getzh(data_heighweight)
+	AllData['electronicvision'] = getzh(data_electronicvision)
+	AllData['lung'] = getzh(data_lung)
 	return json.dumps(AllData)
+
+def geten(data):
+	if data == None:
+		return {}
+	return data.getdata_en()
 
 @app.route('/halthroom/getalldata_zh')
 def getAllData_zh():
@@ -270,16 +280,16 @@ def getAllData_zh():
 	data_lung = tb_lung.query.first()
 
 	AllData = {}
-	AllData['resident'] = data_resident.getdata_zh()
-	AllData['bloodpresure'] = data_bloodpresure.getdata_zh()
-	AllData['bloodsugar'] = data_bloodsugar.getdata_zh()
-	AllData['bodycomposition'] = data_bodycomposition.getdata_zh()
-	AllData['bonedensity'] = data_bonedensity.getdata_zh()
-	AllData['bwh'] = data_bwh.getdata_zh()
-	AllData['ecg'] = data_ecg.getdata_zh()
-	AllData['heighweight'] = data_heighweight.getdata_zh()
-	AllData['electronicvision'] = data_electronicvision.getdata_zh()
-	AllData['lung'] = data_lung.getdata_zh()
+	AllData['resident'] = geten(data_resident)
+	AllData['bloodpresure'] = geten(data_bloodpresure)
+	AllData['bloodsugar'] = geten(data_bloodsugar)
+	AllData['bodycomposition'] = geten(data_bodycomposition)
+	AllData['bonedensity'] = geten(data_bonedensity)
+	AllData['bwh'] = geten(data_bwh)
+	AllData['ecg'] = geten(data_ecg)
+	AllData['heighweight'] = geten(data_heighweigh)
+	AllData['electronicvision'] = geten(data_electronicvision)
+	AllData['lung'] = geten(data_lung)
 	return json.dumps(AllData, ensure_ascii=False)
 
 @app.route('/get_en/<type>')
@@ -288,37 +298,48 @@ def get_en(type):
 	itype = int(type)
 	if itype == 0:
 		data_resident = tb_resident.query.first()
-		data = data_resident.getdata_en()
+		if data_resident != None:
+			data = data_resident.getdata_en()
 	elif itype == 1:
 		data_bloodpresure = tb_bloodpresure.query.first()
-		data = data_bloodpresure.getdata_en()
+		if data_bloodpresure != None:
+			data = data_bloodpresure.getdata_en()
 	elif itype == 2:
 		data_bloodsugar = tb_bloodsugar.query.first()
-		data = data_bloodsugar.getdata_en()
+		if data_bloodsugar != None:
+			data = data_bloodsugar.getdata_en()
 	elif itype == 3:
 		data_bodycomposition = tb_bodycomposition.query.first()
-		data = data_bodycomposition.getdata_en()
+		if data_bodycomposition != None:
+			data = data_bodycomposition.getdata_en()
 	elif itype == 4:
 		data_bonedensity = tb_bonedensity.query.first()
-		data = data_bonedensity.getdata_en()
+		if data_bonedensity != None:
+			data = data_bonedensity.getdata_en()
 	elif itype == 5:
 		data_bwh = tb_bwh.query.first()
-		data = data_bwh.getdata_en()
+		if data_bwh != None:
+			data = data_bwh.getdata_en()
 	elif itype == 6:
 		data_ecg = tb_ecg.query.first()
-		data = data_ecg.getdata_en()
+		if data_ecg != None:
+			data = data_ecg.getdata_en()
 	elif itype == 7:
 		data_heighweight = tb_heighweight.query.first()
-		data = data_heighweight.getdata_en()
+		if data_heighweight != None:
+			data = data_heighweight.getdata_en()
 	elif itype == 8:
 		data_electronicvision = tb_electronicvision.query.first()
-		data = data_electronicvision.getdata_en()
+		if data_electronicvision != None:
+			data = data_electronicvision.getdata_en()
 	elif itype == 9:
 		data_lung = tb_lung.query.first()
-		data = data_lung.getdata_en()
+		if data_lung != None:
+			data = data_lung.getdata_en()
 	else:
 		data_lung = tb_lung.query.first()
-		data = data_lung.getdata_en()
+		if data_lung != None:
+			data = data_lung.getdata_en()
 
 	return json.dumps(data, ensure_ascii=False)
 
@@ -329,37 +350,48 @@ def get_zh(type):
 	itype = int(type)
 	if itype == 0:
 		data_resident = tb_resident.query.first()
-		data = data_resident.getdata_zh()
+		if data_resident != None:
+			data = data_resident.getdata_zh()
 	elif itype == 1:
 		data_bloodpresure = tb_bloodpresure.query.first()
-		data = data_bloodpresure.getdata_zh()
+		if data_bloodpresure != None:
+			data = data_bloodpresure.getdata_zh()
 	elif itype == 2:
 		data_bloodsugar = tb_bloodsugar.query.first()
-		data = data_bloodsugar.getdata_zh()
+		if data_bloodsugar != None:
+			data = data_bloodsugar.getdata_zh()
 	elif itype == 3:
 		data_bodycomposition = tb_bodycomposition.query.first()
-		data = data_bodycomposition.getdata_zh()
+		if data_bodycomposition != None:
+			data = data_bodycomposition.getdata_zh()
 	elif itype == 4:
 		data_bonedensity = tb_bonedensity.query.first()
-		data = data_bonedensity.getdata_zh()
+		if data_bonedensity != None:
+			data = data_bonedensity.getdata_zh()
 	elif itype == 5:
 		data_bwh = tb_bwh.query.first()
-		data = data_bwh.getdata_zh()
+		if data_bwh != None:
+			data = data_bwh.getdata_zh()
 	elif itype == 6:
 		data_ecg = tb_ecg.query.first()
-		data = data_ecg.getdata_zh()
+		if data_ecg != None:
+			data = data_ecg.getdata_zh()
 	elif itype == 7:
 		data_heighweight = tb_heighweight.query.first()
-		data = data_heighweight.getdata_zh()
+		if data_heighweight != None:
+			data = data_heighweight.getdata_zh()
 	elif itype == 8:
 		data_electronicvision = tb_electronicvision.query.first()
-		data = data_electronicvision.getdata_zh()
+		if data_electronicvision != None:
+			data = data_electronicvision.getdata_zh()
 	elif itype == 9:
 		data_lung = tb_lung.query.first()
-		data = data_lung.getdata_zh()
+		if data_lung != None:
+			data = data_lung.getdata_zh()
 	else:
 		data_lung = tb_lung.query.first()
-		data = data_lung.getdata_zh()
+		if data_lung != None:
+			data = data_lung.getdata_zh()
 
 	return json.dumps(data, ensure_ascii=False)
 
