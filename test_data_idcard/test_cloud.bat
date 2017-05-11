@@ -1,0 +1,10 @@
+curl -H "Content-Type: application/json" -d "@bloodpresure.json" jingweibbq.com:10086/dataplatform/api/uploadBloodPresure
+curl -H "Content-Type: application/json" -d "@bloodsugar.json" jingweibbq.com:10086/dataplatform/api/uploadBloodSugar
+curl -H "Content-Type: application/json" -d "@BodyComposion.json" jingweibbq.com:10086/dataplatform/api/uploadBodyComposion
+curl -H "Content-Type: application/json" -d "@BoneDensity.json" jingweibbq.com:10086/dataplatform/api/uploadBoneDensity
+curl -H "Content-Type: application/json" -d "@BWH.json" jingweibbq.com:10086/dataplatform/api/uploadBWH
+curl -H "Content-Type: application/json" -d "@ecg.json" jingweibbq.com:10086/dataplatform/api/uploadEcg
+curl -H "Content-Type: application/json" -d "@ElectronicVision.json" jingweibbq.com:10086/dataplatform/api/uploadElectronicVision
+curl -H "Content-Type: application/json" -d "@heighweight.json" jingweibbq.com:10086/dataplatform/api/uploadHeighWeight
+curl -H "Content-Type: application/json" -d "@Lung.json" jingweibbq.com:10086/dataplatform/api/uploadLung
+curl -H "Content-Type: application/json" -d "@resident.json" jingweibbq.com:10086/dataplatform/api/uploadResident

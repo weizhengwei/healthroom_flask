@@ -1,0 +1,13 @@
+{
+    "dataSource": 1,
+    "machineID": "12341234",
+    "data": [
+        {
+            "examDate": "2017-11-11 11:11:11",
+            "IDCARD":"IDCARD",
+            "checkType":"type",
+            "leftEye":"leftEye",
+            "rightEye":"rightEye"
+        }
+    ]
+}

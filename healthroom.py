@@ -41,7 +41,7 @@ def uploadBloodPresure():
 		realdata = data.get('data')
 		for item in realdata:
 			bloodpresuredata = tb_bloodpresure(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('SBP'), item.get('DBP'), item.get('MBP'), item.get('pulse'), item.get('conclusion'))
 			db.session.add(bloodpresuredata)
 		db.session.commit()
@@ -58,7 +58,7 @@ def uploadBloodSugar():
 		realdata = data.get('data')
 		for item in realdata:
 			bloodsugardata = tb_bloodsugar(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('fastingBloodGlucose'),  item.get('conclusion'))
 			db.session.add(bloodsugardata)
 		db.session.commit()
@@ -75,7 +75,7 @@ def uploadBodyComposion():
 		realdata = data.get('data')
 		for item in realdata:
 			bodycompositiondata = tb_bodycomposition(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('abdominalBodyFatmass'), item.get('abdominalBodyFatmassAdjust'),item.get('trunkSoftleanmassFlag'),
 				item.get('visceralFatArea'), item.get('visceralFatmass'), item.get('weight'), item.get('weightAdjust'), item.get('weightHighLimit'),
@@ -107,7 +107,7 @@ def uploadBoneDensity():
 		realdata = data.get('data')
 		for item in realdata:
 			bonedensitydata = tb_bonedensity(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('acousticveLocity'), 
 				item.get('tValue'), item.get('zValue'), item.get('thScale'), item.get('toScale'), item.get('zYear'), item.get('riskLeavel'), 
 				item.get('oi'), item.get('youngAdult'), item.get('ageMatched'), item.get('bua'), item.get('opr'), item.get('conclusion'))
@@ -126,7 +126,7 @@ def uploadBWH():
 		realdata = data.get('data')
 		for item in realdata:
 			bwhdata = tb_bwh(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('hip'), item.get('bust'),item.get('waist'), item.get('conclusion'))
 			db.session.add(bwhdata)
@@ -144,7 +144,7 @@ def uploadEcg():
 		realdata = data.get('data')
 		for item in realdata:
 			ecgdata = tb_ecg(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('HR'), item.get('PR'),
 				item.get('P_Duration'), item.get('T_Duration'), item.get('QT_Duration'), item.get('QTc_Duration'), item.get('P_Axis'), 
 				item.get('R_V5'), item.get('S_V1'), item.get('conclusion'))
@@ -163,7 +163,7 @@ def uploadElectronicVision():
 		realdata = data.get('data')
 		for item in realdata:
 			electronicvisiondata = tb_electronicvision(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('checkType'),
 				item.get('leftEye'), item.get('rightEye'), item.get('conclusion'))
 			db.session.add(electronicvisiondata)
@@ -181,7 +181,7 @@ def uploadHeighWeight():
 		realdata = data.get('data')
 		for item in realdata:
 			heighweightdata = tb_heighweight(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), 'as', 'asd', item.get('heigh'), item.get('weight'), item.get('bmi'), item.get('conclusion'))
 			db.session.add(heighweightdata)
 		db.session.commit()
@@ -198,7 +198,7 @@ def uploadLung():
 		realdata = data.get('data')
 		for item in realdata:
 			lungdata = tb_lung(data.get('familyCode'), data.get('familyName'), data.get('orgCode'), data.get('orgName'), 
-				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('residentEMPI'), item.get('residentEMPI'), 
+				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('FVC'), item.get('FEV1'),	item.get('FEV2'), 
 				item.get('FEV1Percent'), item.get('FEV2Percent'), item.get('FEV3Percent'), 
