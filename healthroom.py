@@ -265,7 +265,7 @@ def getzh(data):
 	if data == None:
 		return {}
 	return data.getdata_zh()
-	
+
 @app.route('/halthroom/getalldata_zh')
 def getAllData_zh():
 	data_resident = tb_resident.query.first()
@@ -411,7 +411,56 @@ def query():
 		data = cursor.fetchone()
 		db.close()
 		return data.__str__()
-		
+
+@app.route('/data_en/<idcard>')
+def getOneResidentData_en(idcard):
+	#tb_lung.query.filter_by(IDCARD=idcard).first()
+	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).first()
+	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).first()
+	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).first()
+	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).first()
+	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).first()
+	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).first()
+	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).first()
+	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).first()
+	data_lung = tb_lung.query.filter_by(IDCARD=idcard).first()
+
+	AllData = {}
+	AllData['bloodpresure'] = geten(data_bloodpresure)
+	AllData['bloodsugar'] = geten(data_bloodsugar)
+	AllData['bodycomposition'] = geten(data_bodycomposition)
+	AllData['bonedensity'] = geten(data_bonedensity)
+	AllData['bwh'] = geten(data_bwh)
+	AllData['ecg'] = geten(data_ecg)
+	AllData['heighweight'] = geten(data_heighweight)
+	AllData['electronicvision'] = geten(data_electronicvision)
+	AllData['lung'] = geten(data_lung)
+	return json.dumps(AllData)		
+
+@app.route('/data_zh/<idcard>')
+def getOneResidentData_zh(idcard):
+	#tb_lung.query.filter_by(IDCARD=idcard).first()
+	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).first()
+	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).first()
+	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).first()
+	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).first()
+	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).first()
+	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).first()
+	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).first()
+	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).first()
+	data_lung = tb_lung.query.filter_by(IDCARD=idcard).first()
+
+	AllData = {}
+	AllData['bloodpresure'] = getzh(data_bloodpresure)
+	AllData['bloodsugar'] = getzh(data_bloodsugar)
+	AllData['bodycomposition'] = getzh(data_bodycomposition)
+	AllData['bonedensity'] = getzh(data_bonedensity)
+	AllData['bwh'] = getzh(data_bwh)
+	AllData['ecg'] = getzh(data_ecg)
+	AllData['heighweight'] = getzh(data_heighweight)
+	AllData['electronicvision'] = getzh(data_electronicvision)
+	AllData['lung'] = getzh(data_lung)
+	return json.dumps(AllData, ensure_ascii=False)
 
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
