@@ -287,7 +287,7 @@ def getAllData_zh():
 	AllData['bonedensity'] = geten(data_bonedensity)
 	AllData['bwh'] = geten(data_bwh)
 	AllData['ecg'] = geten(data_ecg)
-	AllData['heighweight'] = geten(data_heighweigh)
+	AllData['heighweight'] = geten(data_heighweight)
 	AllData['electronicvision'] = geten(data_electronicvision)
 	AllData['lung'] = geten(data_lung)
 	return json.dumps(AllData, ensure_ascii=False)
