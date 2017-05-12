@@ -13,6 +13,10 @@ db = SQLAlchemy(app)
 url_prifix = '/dataplatform/api'
 error_msg = 'the data you post is not json'
 
+#logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
+logFormatStr = '[%(asctime)s] %(lineno)d} %(levelname)s - %(message)s'
+logging.basicConfig(format = logFormatStr, filename='error.log', level=logging.DEBUG)
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -40,6 +44,8 @@ def uploadBloodPresure():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadBloodPresure')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -59,6 +65,8 @@ def uploadBloodSugar():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadBloodSugar')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -78,6 +86,8 @@ def uploadBodyComposion():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadBodyComposion')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -112,6 +122,8 @@ def uploadBoneDensity():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadBoneDensity')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -133,6 +145,8 @@ def uploadBWH():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadBWH')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -153,6 +167,8 @@ def uploadEcg():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadEcg')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -174,6 +190,8 @@ def uploadElectronicVision():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadElectronicVision')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -194,6 +212,8 @@ def uploadHeighWeight():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadHeighWeight')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -213,6 +233,8 @@ def uploadLung():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadLung')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
@@ -241,6 +263,8 @@ def uploadResident():
 		data = request.get_data()
 		if data == None:
 			return error_msg
+		logging.debug('this is post data uploadResident')
+		logging.debug(data)
 		data = json.loads(data)
 		realdata = data.get('data')
 		for item in realdata:
