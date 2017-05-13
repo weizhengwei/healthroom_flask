@@ -7,7 +7,9 @@ import logging
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom_flask'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#该配置为True,则每次请求结束都会自动commit数据库的变动
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 
 url_prifix = '/dataplatform/api'
@@ -41,7 +43,7 @@ def uploadBloodPresure():
 		return 'uploadBloodPresure'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBloodPresure')
@@ -62,7 +64,7 @@ def uploadBloodSugar():
 		return 'uploadBloodSugar'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBloodSugar')
@@ -83,7 +85,7 @@ def uploadBodyComposion():
 		return 'uploadBodyComposion'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBodyComposion')
@@ -119,7 +121,7 @@ def uploadBoneDensity():
 		return 'uploadBoneDensity'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBoneDensity')
@@ -142,7 +144,7 @@ def uploadBWH():
 		return 'uploadBWH'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBWH')
@@ -164,7 +166,7 @@ def uploadEcg():
 		return 'uploadEcg'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadEcg')
@@ -187,7 +189,7 @@ def uploadElectronicVision():
 		return 'uploadElectronicVision'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadElectronicVision')
@@ -209,7 +211,7 @@ def uploadHeighWeight():
 		return 'uploadHeighWeight'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadHeighWeight')
@@ -230,7 +232,7 @@ def uploadLung():
 		return 'uploadlung'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadLung')
@@ -260,7 +262,7 @@ def uploadResident():
 		return 'uploadResident'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data()
+		data = request.get_data().decode('GBK')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadResident')
@@ -283,7 +285,7 @@ def geten(data):
 
 @app.route('/halthroom/getalldata_en')
 def getAllData_en():
-	#tb_lung.query.filter_by(IDCARD=idcard).first()
+	#tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
 	data_bloodpresure = tb_bloodpresure.query.first()
 	data_bloodsugar = tb_bloodsugar.query.first()
 	data_bodycomposition = tb_bodycomposition.query.first()
@@ -459,16 +461,16 @@ def query():
 
 @app.route('/data_en/<idcard>')
 def getOneResidentData_en(idcard):
-	#tb_lung.query.filter_by(IDCARD=idcard).first()
-	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).first()
-	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).first()
-	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).first()
-	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).first()
-	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).first()
-	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).first()
-	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).first()
-	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).first()
-	data_lung = tb_lung.query.filter_by(IDCARD=idcard).first()
+	#tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
+	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).order_by(tb_bloodpresure.dataID.desc()).first()
+	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).order_by(tb_bloodsugar.dataID.desc()).first()
+	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).order_by(tb_bodycomposition.dataID.desc()).first()
+	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).order_by(tb_bonedensity.dataID.desc()).first()
+	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).order_by(tb_bwh.dataID.desc()).first()
+	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
+	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).order_by(tb_heighweight.dataID.desc()).first()
+	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).order_by(tb_electronicvision.dataID.desc()).first()
+	data_lung = tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_lung.dataID.desc()).first()
 
 	AllData = {}
 	AllData['bloodpresure'] = geten(data_bloodpresure)
@@ -484,16 +486,16 @@ def getOneResidentData_en(idcard):
 
 @app.route('/data_zh/<idcard>')
 def getOneResidentData_zh(idcard):
-	#tb_lung.query.filter_by(IDCARD=idcard).first()
-	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).first()
-	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).first()
-	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).first()
-	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).first()
-	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).first()
-	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).first()
-	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).first()
-	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).first()
-	data_lung = tb_lung.query.filter_by(IDCARD=idcard).first()
+	#tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
+	data_bloodpresure = tb_bloodpresure.query.filter_by(IDCARD=idcard).order_by(tb_bloodpresure.dataID.desc()).first()
+	data_bloodsugar = tb_bloodsugar.query.filter_by(IDCARD=idcard).order_by(tb_bloodsugar.dataID.desc()).first()
+	data_bodycomposition = tb_bodycomposition.query.filter_by(IDCARD=idcard).order_by(tb_bodycomposition.dataID.desc()).first()
+	data_bonedensity = tb_bonedensity.query.filter_by(IDCARD=idcard).order_by(tb_bonedensity.dataID.desc()).first()
+	data_bwh = tb_bwh.query.filter_by(IDCARD=idcard).order_by(tb_bwh.dataID.desc()).first()
+	data_ecg = tb_ecg.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
+	data_heighweight = tb_heighweight.query.filter_by(IDCARD=idcard).order_by(tb_heighweight.dataID.desc()).first()
+	data_electronicvision = tb_electronicvision.query.filter_by(IDCARD=idcard).order_by(tb_electronicvision.dataID.desc()).first()
+	data_lung = tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_lung.dataID.desc()).first()
 
 	AllData = {}
 	AllData['bloodpresure'] = getzh(data_bloodpresure)
@@ -505,7 +507,12 @@ def getOneResidentData_zh(idcard):
 	AllData['heighweight'] = getzh(data_heighweight)
 	AllData['electronicvision'] = getzh(data_electronicvision)
 	AllData['lung'] = getzh(data_lung)
-	return json.dumps(AllData, ensure_ascii=False)
+	del data_ecg
+	
+	s = json.dumps(AllData, ensure_ascii=False)
+	del AllData
+	return s#json.dumps(AllData, ensure_ascii=False)
+
 
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
