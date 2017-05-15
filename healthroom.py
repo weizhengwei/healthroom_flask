@@ -14,6 +14,7 @@ db = SQLAlchemy(app)
 
 url_prifix = '/dataplatform/api'
 error_msg = 'the data you post is not json'
+return_msg = 'upload data ok'
 
 #logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
 logFormatStr = '[%(asctime)s] %(lineno)d} %(levelname)s - %(message)s'
@@ -43,7 +44,7 @@ def uploadBloodPresure():
 		return 'uploadBloodPresure'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBloodPresure')
@@ -55,8 +56,13 @@ def uploadBloodPresure():
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('SBP'), item.get('DBP'), item.get('MBP'), item.get('pulse'), item.get('conclusion'))
 			db.session.add(bloodpresuredata)
-		db.session.commit()
-		return 'upload data ok'
+
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadBloodSugar', methods=['GET', 'POST'])
 def uploadBloodSugar():
@@ -64,7 +70,7 @@ def uploadBloodSugar():
 		return 'uploadBloodSugar'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBloodSugar')
@@ -76,8 +82,12 @@ def uploadBloodSugar():
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('fastingBloodGlucose'),  item.get('conclusion'))
 			db.session.add(bloodsugardata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadBodyComposion', methods=['GET', 'POST'])
 def uploadBodyComposion():
@@ -85,7 +95,7 @@ def uploadBodyComposion():
 		return 'uploadBodyComposion'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBodyComposion')
@@ -112,8 +122,12 @@ def uploadBodyComposion():
 				item.get('standardWeight'), item.get('subcutaneousFatmass'),item.get('totalBodyWater'), item.get('totalBodyWaterHighLimit'),				
 				item.get('totalBodyWaterLowLimit'), item.get('totalEnergyConsumption'), item.get('conclusion'))
 			db.session.add(bodycompositiondata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadBoneDensity', methods=['GET', 'POST'])
 def uploadBoneDensity():
@@ -121,7 +135,7 @@ def uploadBoneDensity():
 		return 'uploadBoneDensity'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBoneDensity')
@@ -135,8 +149,12 @@ def uploadBoneDensity():
 				item.get('tValue'), item.get('zValue'), item.get('thScale'), item.get('toScale'), item.get('zYear'), item.get('riskLeavel'), 
 				item.get('oi'), item.get('youngAdult'), item.get('ageMatched'), item.get('bua'), item.get('opr'), item.get('conclusion'))
 			db.session.add(bonedensitydata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadBWH', methods=['GET', 'POST'])
 def uploadBWH():
@@ -144,7 +162,7 @@ def uploadBWH():
 		return 'uploadBWH'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadBWH')
@@ -157,8 +175,12 @@ def uploadBWH():
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), 
 				item.get('hip'), item.get('bust'),item.get('waist'), item.get('conclusion'))
 			db.session.add(bwhdata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadEcg', methods=['GET', 'POST'])
 def uploadEcg():
@@ -166,7 +188,7 @@ def uploadEcg():
 		return 'uploadEcg'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadEcg')
@@ -180,8 +202,12 @@ def uploadEcg():
 				item.get('P_Duration'), item.get('T_Duration'), item.get('QT_Duration'), item.get('QTc_Duration'), item.get('P_Axis'), 
 				item.get('R_V5'), item.get('S_V1'), item.get('conclusion'))
 			db.session.add(ecgdata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadElectronicVision', methods=['GET', 'POST'])
 def uploadElectronicVision():
@@ -189,7 +215,7 @@ def uploadElectronicVision():
 		return 'uploadElectronicVision'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadElectronicVision')
@@ -202,8 +228,12 @@ def uploadElectronicVision():
 				item.get('residentName'), item.get('auditDoctorEMPI'), item.get('auditDoctorName'), item.get('checkType'),
 				item.get('leftEye'), item.get('rightEye'), item.get('conclusion'))
 			db.session.add(electronicvisiondata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadHeighWeight', methods=['GET', 'POST'])
 def uploadHeighWeight():
@@ -211,7 +241,7 @@ def uploadHeighWeight():
 		return 'uploadHeighWeight'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadHeighWeight')
@@ -223,8 +253,12 @@ def uploadHeighWeight():
 				data.get('dataSource'), data.get('machineID'), item.get('examDate'), item.get('IDCARD'), item.get('residentEMPI'), 
 				item.get('residentName'), 'as', 'asd', item.get('heigh'), item.get('weight'), item.get('bmi'), item.get('conclusion'))
 			db.session.add(heighweightdata)
-		db.session.commit()
-		return 'upload data ok'#json.dumps(data)
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 @app.route(url_prifix+'/uploadLung', methods=['GET', 'POST'])
 def uploadLung():
@@ -232,7 +266,7 @@ def uploadLung():
 		return 'uploadlung'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadLung')
@@ -252,8 +286,12 @@ def uploadLung():
 				item.get('TV'), item.get('IRV'), item.get('ERV'), item.get('IC'), 
 				item.get('MV'), item.get('RR'), item.get('Result'),	item.get('conclusion'))
 			db.session.add(lungdata)
-		db.session.commit()
-		return 'upload data ok'
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 
 @app.route(url_prifix+'/uploadResident', methods=['GET', 'POST'])
@@ -262,7 +300,7 @@ def uploadResident():
 		return 'uploadResident'
 	elif request.method == 'POST':
 		#data = request.get_json()
-		data = request.get_data().decode('GBK')
+		data = request.get_data().decode('utf-8')
 		if data == None:
 			return error_msg
 		logging.debug('this is post data uploadResident')
@@ -275,8 +313,12 @@ def uploadResident():
 				item.get('birthday'),item.get('phone'),item.get('nation'),item.get('address'),
 				item.get('residentEMPI'), item.get('residentEMPI'))
 			db.session.add(residentdata)
-		db.session.commit()
-		return 'upload data ok'#json.dumps(data)
+		try:
+			db.session.commit()
+		except Exception as ex:
+			return ex.__class__
+		else:
+			return return_msg
 
 def geten(data):
 	if data == None:

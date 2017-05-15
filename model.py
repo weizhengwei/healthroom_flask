@@ -15,7 +15,7 @@ class tb_resident(db.Model):
 	orgName = db.Column(db.String(255))
 	dataSource = db.Column(db.Integer)
 	mechineID = db.Column(db.Integer)
-	IDCARD = db.Column(db.String(255))
+	IDCARD = db.Column(db.String(255), unique=True)
 	gender = db.Column(db.Integer)
 	birthday = db.Column(db.Date)
 	phone = db.Column(db.String(255))
@@ -83,7 +83,7 @@ class tb_bloodpresure(db.Model):
 	DBP = db.Column(db.Float)
 	MBP = db.Column(db.Float)
 	pulse = db.Column(db.Integer)
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -142,7 +142,7 @@ class tb_bloodsugar(db.Model):
 	auditDoctorEMPI = db.Column(db.String(255))
 	auditDoctorName = db.Column(db.String(255))
 	fastingBloodGlucose = db.Column(db.Float)
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -249,7 +249,7 @@ class tb_bodycomposition(db.Model):
 	totalBodyWaterHighLimit = db.Column(db.String(32))
 	totalBodyWaterLowLimit = db.Column(db.String(32))
 	totalEnergyConsumption = db.Column(db.String(32))
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -492,7 +492,7 @@ class tb_bonedensity(db.Model):
 	ageMatched = db.Column(db.String(32))
 	bua = db.Column(db.String(32))
 	opr = db.Column(db.String(32))
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -578,7 +578,7 @@ class tb_bwh(db.Model):
 	hip = db.Column(db.Float)
 	bust = db.Column(db.Float)
 	waist = db.Column(db.Float)
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -641,7 +641,7 @@ class tb_ecg(db.Model):
 	P_Axis = db.Column(db.Integer)
 	R_V5 = db.Column(db.Integer)
 	S_V1 = db.Column(db.Integer)
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -716,7 +716,7 @@ class tb_heighweight(db.Model):
 	heigh = db.Column(db.Float)
 	weight = db.Column(db.Float)
 	bmi = db.Column(db.Float)
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	# def __init__(self, data):
@@ -793,7 +793,7 @@ class tb_electronicvision(db.Model):
 	checkType = db.Column(db.String(128))
 	leftEye = db.Column(db.String(128))
 	rightEye = db.Column(db.String(128))
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
@@ -875,7 +875,7 @@ class tb_lung(db.Model, dict):
 	MV = db.Column(db.String(255))
 	RR = db.Column(db.String(255))
 	Result = db.Column(db.String(255))
-	conclusion = db.Column(db.String(255))
+	conclusion = db.Column(db.String(512))
 	uploadTime = db.Column(db.DateTime, default=datetime.now())
 
 	def __init__(self, familyCode, familyName, orgCode, orgName, dataSource, mechineID, examDate, IDCARD, residentEMPI, residentName,
