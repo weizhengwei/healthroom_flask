@@ -6,7 +6,7 @@ import json
 import logging
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom_flask'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #该配置为True,则每次请求结束都会自动commit数据库的变动
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
@@ -309,9 +309,9 @@ def uploadResident():
 		realdata = data.get('data')
 		for item in realdata:
 			residentdata = tb_resident(item.get('familyCode'), item.get('familyName'), item.get('orgCode'), item.get('orgName'), 
-				item.get('dataSource'), item.get('machineID'), item.get('IDCARD'), item.get('gender'),
+				item.get('dataSource'), item.get('machineID'), item.get('cardNo'), item.get('gender'),
 				item.get('birthday'),item.get('phone'),item.get('nation'),item.get('address'),
-				item.get('residentEMPI'), item.get('residentEMPI'))
+				item.get('cardNo'), item.get('name'))
 			db.session.add(residentdata)
 		try:
 			db.session.commit()
@@ -563,7 +563,7 @@ def main():
 
 if __name__ == '__main__':
     #main()
-	app.run(debug=True, host='0.0.0.0', port=10087)
+	app.run(debug=True, host='0.0.0.0', port=10089)
 
 
 
