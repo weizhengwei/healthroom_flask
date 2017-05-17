@@ -14,7 +14,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 
-mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom')
+mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom', charset='utf8')
+mydb.autocommit(True)
 
 url_prifix = '/dataplatform/api'
 error_msg = 'the data you post is not json'
