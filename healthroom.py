@@ -13,6 +13,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 
+mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom')
+
 url_prifix = '/dataplatform/api'
 error_msg = 'the data you post is not json'
 return_msg = 'upload data ok'
@@ -766,9 +768,8 @@ def ge_lung(data):
 
 @app.route('/data_zh/<idcard>')
 def ttt(idcard):
-	db = pymysql.connect('localhost', 'root', 'r00t', 'healthroom')
 	#cursor = db.cursor()
-	cursor = db.cursor(cursor=pymysql.cursors.DictCursor)
+	cursor = mydb.cursor(cursor=pymysql.cursors.DictCursor)
 	sql = "SELECT * FROM tb_bloodpresure WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
 	cursor.execute(sql)
 	data_bloodpresure = cursor.fetchone()
@@ -826,7 +827,7 @@ def main():
 
 if __name__ == '__main__':
     #main()
-	app.run(debug=True, host='0.0.0.0', port=10089)
+	app.run(debug=False, host='0.0.0.0', port=10089)
 
 
 
