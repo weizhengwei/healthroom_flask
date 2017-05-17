@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from model import *
 import json
 import logging
+import pymysql
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom'
@@ -765,7 +766,6 @@ def ge_lung(data):
 
 @app.route('/data_zh/<idcard>')
 def ttt(idcard):
-	import pymysql
 	db = pymysql.connect('localhost', 'root', 'r00t', 'healthroom')
 	#cursor = db.cursor()
 	cursor = db.cursor(cursor=pymysql.cursors.DictCursor)
