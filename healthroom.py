@@ -557,8 +557,8 @@ def getOneResidentData_zh2(idcard):
 	return s#json.dumps(AllData, ensure_ascii=False)
 
 
-@app.route('/data_zh/<idcard>')
-def getOneResidentData_zh(idcard):
+@app.route('/data_zh3/<idcard>')
+def getOneResidentData_zh3(idcard):
 	#tb_lung.query.filter_by(IDCARD=idcard).order_by(tb_ecg.dataID.desc()).first()
 	idcard = idcard[0:idcard.find('?')]
 	data_bloodpresure = tb_bloodpresure.query.filter_by(residentEMPI=idcard).first()
@@ -586,6 +586,238 @@ def getOneResidentData_zh(idcard):
 	s = json.dumps(AllData, ensure_ascii=False)
 	del AllData
 	return s#json.dumps(AllData, ensure_ascii=False)
+
+
+def get_bloodpresure(data):
+	data_bloodpresure_zh = {}
+	if data == None:
+		return data_bloodpresure_zh
+	data_bloodpresure_zh['收缩压'] = data['SBP']
+	data_bloodpresure_zh['舒张压'] = data['DBP']
+	data_bloodpresure_zh['平均压'] = data['MBP']
+	data_bloodpresure_zh['脉搏'] = data['pulse']
+	return data_bloodpresure_zh
+
+def get_bloodsugar(data):
+	data_bloodsugar_zh = {}
+	if data == None:
+		return data_bloodsugar_zh
+	data_bloodsugar_zh['空腹血糖'] = data['fastingBloodGlucose']
+	return data_bloodsugar_zh
+
+def get_bodycomposition(data):
+	data_bodycomposition_en = {}
+	if data == None:
+		return data_bodycomposition_en
+	data_bodycomposition_en['躯干脂肪量'] = data['abdominalBodyFatmass']
+	data_bodycomposition_en['体脂肪量调节值'] = data['abdominalBodyFatmassAdjust']
+	data_bodycomposition_en['躯干肌肉水平'] = data['trunkSoftleanmassFlag']
+	data_bodycomposition_en['内脏脂肪面积'] = data['visceralFatArea']
+	data_bodycomposition_en['内脏脂肪质量'] = data['visceralFatmass']
+	data_bodycomposition_en['体重'] = data['weight']
+	data_bodycomposition_en['体重调节值'] = data['weightAdjust']
+	data_bodycomposition_en['体重高值'] = data['weightHighLimit']
+	data_bodycomposition_en['体重低值'] = data['weightlowlimit']
+	data_bodycomposition_en['腰臀比'] = data['whr']
+	data_bodycomposition_en['体脂肪量高值'] = data['abdominalBodyFatmassHighLimit']
+	data_bodycomposition_en['体脂肪量低值'] = data['abdominalBodyFatmassLowLimit']
+	data_bodycomposition_en['躯干肌肉量'] = data['adbominalSoftleanmass']
+	data_bodycomposition_en['基础代谢量'] = data['basicMetabolicrate']
+	data_bodycomposition_en['身体质量指数'] = data['bmi']
+	data_bodycomposition_en['身体质量指数高值'] = data['bmiHighLimit']
+	data_bodycomposition_en['身体质量指数低值'] = data['bmiLowLimit']
+	data_bodycomposition_en['身体年龄'] = data['bodyAge']
+	data_bodycomposition_en['体脂肪率'] = data['bodyFatRate']
+	data_bodycomposition_en['体脂肪率高值'] = data['bodyFatHeighLimit']
+	data_bodycomposition_en['体脂肪率低值'] = data['bodyFatLowLimit']
+	data_bodycomposition_en['bodyType'] = data['bodyType']
+	data_bodycomposition_en['细胞外液'] = data['extracellularFluid']
+	data_bodycomposition_en['阻抗'] = data['impedance']
+	data_bodycomposition_en['细胞内液'] = data['intracellularFluid']
+	data_bodycomposition_en['去脂体重'] = data['leanBodymass']
+	data_bodycomposition_en['去脂体重高值'] = data['leanBodymassHighLimit']
+	data_bodycomposition_en['去脂体重低值'] = data['leanBodymassLowLimit']
+	data_bodycomposition_en['左上肢体脂肪量'] = data['leftArmBodyFatmass']
+	data_bodycomposition_en['左上肢肌肉量'] = data['leftArmSoftleanmass']
+	data_bodycomposition_en['左臂肌肉水平'] = data['leftArmsoftleanmassFlag']
+	data_bodycomposition_en['左下肢体脂肪量'] = data['leftLegBodyFatmass']
+	data_bodycomposition_en['左下肢肌肉量'] = data['leftLegSoftleanmass']
+	data_bodycomposition_en['左腿肌肉水平'] = data['leftLegSoftleanmassFlag']
+	data_bodycomposition_en['体脂肪量'] = data['massOfBodyFat']
+	data_bodycomposition_en['无机盐'] = data['mineral']
+	data_bodycomposition_en['无机盐高值'] = data['mineralHighLimit']
+	data_bodycomposition_en['无机盐低值'] = data['mineralLowLimit']
+	data_bodycomposition_en['obesexaxis'] = data['obesexaxis']
+	data_bodycomposition_en['蛋白质'] = data['protein']
+	data_bodycomposition_en['蛋白质高值'] = data['proteinHighLimit']
+	data_bodycomposition_en['蛋白质低值'] = data['proteinLowLimit']
+	data_bodycomposition_en['右上肢体脂肪量'] = data['rightArmbodyFatmass']
+	data_bodycomposition_en['右臂肌肉水平'] = data['rightArmSoftleanmassFlag']
+	data_bodycomposition_en['右下肢体脂肪量'] = data['rightLegBodyFatmass']
+	data_bodycomposition_en['右上肢肌肉量'] = data['rigtArmSoftleanmass']
+	data_bodycomposition_en['右下肢肌肉量'] = data['rigtLegSoftleanmass']
+	data_bodycomposition_en['肌肉量'] = data['softleanmass']
+	data_bodycomposition_en['肌肉量调节值'] = data['softleanmassAdjust']
+	data_bodycomposition_en['肌肉量高值'] = data['softleanmassHighLimit']
+	data_bodycomposition_en['肌肉量低值'] = data['softleanmassLowLimit']
+	data_bodycomposition_en['标准体重'] = data['standardWeight']
+	data_bodycomposition_en['皮下脂肪量'] = data['subcutaneousFatmass']
+	data_bodycomposition_en['身体水分'] = data['totalBodyWater']
+	data_bodycomposition_en['身体水分高值'] = data['totalBodyWaterHighLimit']
+	data_bodycomposition_en['身体水分低值'] = data['totalBodyWaterLowLimit']
+	data_bodycomposition_en['总能量消耗'] = data['totalEnergyConsumption']
+	return data_bodycomposition_en
+
+
+def get_bonedensity(data):
+	data_bonedensity_zh = {}
+	if data == None:
+		return data_bonedensity_zh
+	data_bonedensity_zh['声速'] = data['acousticveLocity']
+	data_bonedensity_zh['T值'] = data['tValue']
+	data_bonedensity_zh['Z值'] = data['zValue']
+	data_bonedensity_zh['测值/峰值比'] = data['thScale']
+	data_bonedensity_zh['测值/均值比'] = data['toScale']
+	data_bonedensity_zh['Z值相对年龄'] = data['zYear']
+	data_bonedensity_zh['相对骨折风险'] = data['riskLeavel']
+	data_bonedensity_zh['骨质疏松指数'] = data['oi']
+	data_bonedensity_zh['成人对比【%】'] = data['youngAdult']
+	data_bonedensity_zh['同龄对比【%】'] = data['ageMatched']
+	data_bonedensity_zh['宽波段超声衰减值'] = data['bua']
+	data_bonedensity_zh['多次测量误差'] = data['opr']
+	return data_bonedensity_zh
+
+def get_bwh(data):
+	data_bwh_zh = {}
+	if data == None:
+		return data_bwh_zh
+	data_bwh_zh['胸围'] = data['hip']
+	data_bwh_zh['臀围'] = data['bust']
+	data_bwh_zh['胸围'] = data['waist']
+	return data_bwh_zh
+
+def get_ecg(data):
+	data_ecg_zh = {}
+	if data == None:
+		return data_ecg_zh
+	data_ecg_zh['心率'] = data['HR']
+	data_ecg_zh['PR间期'] = data['PR']
+	data_ecg_zh['P时限'] = data['P_Duration']
+	data_ecg_zh['T时限'] = data['T_Duration']
+	data_ecg_zh['QT时限'] = data['QT_Duration']
+	data_ecg_zh['QTc时限'] = data['QTc_Duration']
+	data_ecg_zh['P电轴'] = data['P_Axis']
+	data_ecg_zh['R_V5'] = data['R_V5']
+	data_ecg_zh['S_V1'] = data['S_V1']
+	return data_ecg_zh
+
+def get_heighweight(data):
+	data_heighweight_zh = {}
+	if data == None:
+		return data_heighweight_zh
+	data_heighweight_zh['身高'] = data['heigh']
+	data_heighweight_zh['体重'] = data['weight']
+	data_heighweight_zh['BMI(体重/身高^2)'] = data['bmi']
+	return data_heighweight_zh
+
+
+def get_electronicvision(data):
+	data_electronicvision_zh = {}
+	if data == None:
+		return data_electronicvision_zh
+	data_electronicvision_zh['检查类型'] = data['checkType']
+	data_electronicvision_zh['左眼'] = data['leftEye']
+	data_electronicvision_zh['右眼'] = data['rightEye']
+	return data_electronicvision_zh
+
+def ge_lung(data):
+	data_lung_zh = {}
+	if data == None:
+		return data_lung_zh
+	data_lung_zh['用力肺活量'] = data['FVC']
+	data_lung_zh['1秒钟肺活量'] = data['FEV1']
+	data_lung_zh['2秒钟肺活量'] = data['FEV2']
+	data_lung_zh['1秒率(FEV1%)'] = data['FEV1Percent']
+	data_lung_zh['2秒率(FEV2%)'] = data['FEV2Percent']
+	data_lung_zh['3秒率(FEV3%)'] = data['FEV3Percent']
+	data_lung_zh['最大呼气中段流速(MMF)'] = data['MMF']
+	data_lung_zh['最大通气量/1秒量(MVV1)'] = data['MVV1']
+	data_lung_zh['BSA1(BSA1)'] = data['BSA1']
+	data_lung_zh['M_B1'] = data['M_B1']
+	data_lung_zh['峰值流量(PEF)'] = data['PEF']
+	data_lung_zh['呼气至75%肺活量时对应流速值(V75)'] = data['V75']
+	data_lung_zh['呼气至50%肺活量时对应流速值(V50)'] = data['V50']
+	data_lung_zh['呼气至25%肺活量时对应流速值(V25)'] = data['V25']
+	data_lung_zh['呼气至50%25%肺活量时对应流速值(V50/V25)'] = data['V50_V25']
+	data_lung_zh['V25与身高之比(V25/H)'] = data['V25_H']
+	data_lung_zh['实测最大通气量(MVV)'] = data['MVV']
+	data_lung_zh['体表面积(BSA)'] = data['BSA']
+	data_lung_zh['实测最大通气量与体表面积之比(MVV/BSA)'] = data['MVV_BSA']
+	data_lung_zh['实测肺活量(VC)'] = data['VC']
+	data_lung_zh['潮气量(TV)'] = data['TV']
+	data_lung_zh['补吸气量(IRV)'] = data['IRV']
+	data_lung_zh['补呼气量(ERV)'] = data['ERV']
+	data_lung_zh['深呼气量(IC)'] = data['IC']
+	data_lung_zh['静息通气量(MV)'] = data['MV']
+	data_lung_zh['呼吸频率(RR)'] = data['RR']
+	data_lung_zh['结果(Result)'] = data['Result']
+	return data_lung_zh
+
+@app.route('/data_zh/<idcard>')
+def ttt(idcard):
+	import pymysql
+	db = pymysql.connect('localhost', 'root', 'r00t', 'healthroom')
+	#cursor = db.cursor()
+	cursor = db.cursor(cursor=pymysql.cursors.DictCursor)
+	sql = "SELECT * FROM tb_bloodpresure WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bloodpresure = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_bloodsugar WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bloodsugar = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_bodycomposition WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bodycomposition = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_bonedensity WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bonedensity = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_bwh WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bwh = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_ecg WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_ecg = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_heighweight WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_heighweight= cursor.fetchone()
+
+	sql = "SELECT * FROM tb_electronicvision WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_electronicvision = cursor.fetchone()
+
+	sql = "SELECT * FROM tb_lung WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_lung = cursor.fetchone()
+
+	AllData = {}
+	AllData['bloodpresure'] = get_bloodpresure(data_bloodpresure)
+	AllData['bloodsugar'] = get_bloodsugar(data_bloodsugar)
+	AllData['bodycomposition'] = get_bodycomposition(data_bodycomposition)
+	AllData['bonedensity'] = get_bonedensity(data_bonedensity)
+	AllData['bwh'] = get_bwh(data_bwh)
+	AllData['ecg'] = get_ecg(data_ecg)
+	AllData['heighweight'] = get_heighweight(data_heighweight)
+	AllData['electronicvision'] = get_electronicvision(data_electronicvision)
+	AllData['lung'] = ge_lung(data_lung)
+	# db.close()
+	
+	return json.dumps(AllData, ensure_ascii=False)
 
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
