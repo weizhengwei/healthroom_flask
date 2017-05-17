@@ -5,6 +5,7 @@ from model import *
 import json
 import logging
 import pymysql
+from gevent.wsgi import WSGIServer
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom'
@@ -827,7 +828,8 @@ def main():
 
 if __name__ == '__main__':
     #main()
-	app.run(debug=False, host='0.0.0.0', port=10089)
-
+	#app.run(debug=False, host='0.0.0.0', port=10089)
+	http_server = WSGIServer(('0.0.0.0', 10089), app)
+	http_server.serve_forever()
 
 
