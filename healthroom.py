@@ -1,18 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, jsonify, render_template
-from flask_sqlalchemy import SQLAlchemy
 from model import *
 import json
 import logging
 import pymysql
-from gevent.wsgi import WSGIServer
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-#该配置为True,则每次请求结束都会自动commit数据库的变动
-app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-db = SQLAlchemy(app)
 
 mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom', charset='utf8')
 mydb.autocommit(True)
@@ -822,15 +812,35 @@ def ttt(idcard):
 	
 	return json.dumps(AllData, ensure_ascii=False)
 
+@app.route(url_prifix+'/getAllResident', methods=['GET', 'POST'])
+def get_all_resient():
+	data = tb_resident.query.all()
+	if data == None:
+		return 'there is no resident'
+	AllData = []
+	for item in data:
+		it = {}
+		it['name'] = item.residentName
+		it['idcard'] = item.residentEMPI
+		#AllData.append(item.getdata_zh())
+		AllData.append(it)
+	db.session.commit()
+	return json.dumps(AllData, ensure_ascii=False)
+
+@app.route('/getSpecialData/<idcard>')
+def get_special_data(idcard):
+	#cursor = db.cursor()
+	cursor = mydb.cursor(cursor=pymysql.cursors.DictCursor)
+	sql = "SELECT * FROM tb_bloodpresure WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
+	cursor.execute(sql)
+	data_bloodpresure = cursor.fetchone()
+	return 'getSpecialData'
+
+
 def main():
 	logFormatStr = '[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s'
 	logging.basicConfig(format = logFormatStr, filename='error.log', level=logging.DEBUG)
 	app.run(debug=True, host='0.0.0.0', port=10086)
 
 if __name__ == '__main__':
-    #main()
-	#app.run(debug=False, host='0.0.0.0', port=10089)
-	http_server = WSGIServer(('0.0.0.0', 10089), app)
-	http_server.serve_forever()
-
-
+	app.run(debug=True, host='0.0.0.0', port=10089)

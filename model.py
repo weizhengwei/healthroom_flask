@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
-from healthroom import db
+from flask import Flask, request, jsonify, render_template
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import json
 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:r00t@localhost/healthroom'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+#该配置为True,则每次请求结束都会自动commit数据库的变动
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+db = SQLAlchemy(app)
 
 class tb_resident(db.Model):
 	dataID = db.Column(db.Integer, primary_key=True, autoincrement=True)
