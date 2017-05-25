@@ -311,7 +311,8 @@ def uploadResident():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return return_msg
 		else:
 			return return_msg
 
