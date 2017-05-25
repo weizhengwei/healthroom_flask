@@ -55,7 +55,8 @@ def uploadBloodPresure():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -80,7 +81,8 @@ def uploadBloodSugar():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -120,7 +122,8 @@ def uploadBodyComposion():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -147,7 +150,8 @@ def uploadBoneDensity():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -173,7 +177,8 @@ def uploadBWH():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -200,7 +205,8 @@ def uploadEcg():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -226,7 +232,8 @@ def uploadElectronicVision():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -251,7 +258,8 @@ def uploadHeighWeight():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -284,7 +292,8 @@ def uploadLung():
 		try:
 			db.session.commit()
 		except Exception as ex:
-			return ex.__class__
+			db.session.rollback()
+			return str(ex)
 		else:
 			return return_msg
 
@@ -307,12 +316,14 @@ def uploadResident():
 				item.get('dataSource'), item.get('machineID'), item.get('cardNo'), item.get('gender'),
 				item.get('birthday'),item.get('phone'),item.get('nation'),item.get('address'),
 				item.get('cardNo'), item.get('name'))
-			db.session.add(residentdata)
+			finddata = tb_resident.query.filter_by(IDCARD=item.get('cardNo')).first()
+			if finddata == None:
+				db.session.add(residentdata)
 		try:
 			db.session.commit()
 		except Exception as ex:
 			db.session.rollback()
-			return return_msg
+			return str(ex)
 		else:
 			return return_msg
 
