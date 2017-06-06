@@ -4,8 +4,8 @@ import json
 import logging
 import pymysql
 
-mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom', charset='utf8')
-mydb.autocommit(True)
+# mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom', charset='utf8')
+# mydb.autocommit(True)
 
 url_prifix = '/dataplatform/api'
 error_msg = 'the data you post is not json'
@@ -319,6 +319,8 @@ def uploadResident():
 			finddata = tb_resident.query.filter_by(IDCARD=item.get('cardNo')).first()
 			if finddata == None:
 				db.session.add(residentdata)
+			else:
+				finddata.uploadTime = datetime.now()
 		try:
 			db.session.commit()
 		except Exception as ex:
@@ -773,7 +775,10 @@ def ge_lung(data):
 @app.route('/data_zh/<idcard>')
 def ttt(idcard):
 	#cursor = db.cursor()
+	mydb = pymysql.connect('localhost', 'root', 'r00t', 'healthroom', charset='utf8')
+	mydb.autocommit(True)
 	cursor = mydb.cursor(cursor=pymysql.cursors.DictCursor)
+
 	sql = "SELECT * FROM tb_bloodpresure WHERE residentEMPI='%s' ORDER BY dataID DESC" % idcard
 	cursor.execute(sql)
 	data_bloodpresure = cursor.fetchone()
